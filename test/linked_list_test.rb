@@ -168,7 +168,7 @@ describe LinkedList do
 
             # delete fist node (requires updating head)
             @list.delete(2)
-            expect(@list.get_first).must_equal 3
+            expect(@list.get_at_index(0)).must_equal 3
             expect(@list.length).must_equal 4
             expect(@list.get_at_index(@list.length - 1)).must_equal 9
             expect(@list.find_max).must_equal 10
