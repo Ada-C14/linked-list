@@ -28,8 +28,8 @@ class LinkedList
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def search(value)
       return false if @head.nil?
 
@@ -98,8 +98,8 @@ class LinkedList
     # method that returns the value at a given index in the linked list
     # index count starts at 0
     # returns nil if there are fewer nodes in the linked list than the index value or if the list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def get_at_index(index)
       return nil if self.length < index || @head.nil?
 
@@ -141,10 +141,30 @@ class LinkedList
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1) - we're not making any new linked list, doing it in place
     def reverse
-      raise NotImplementedError
+      # in place or can we make a new linked list?
+      # in case of empty list, return nil?
+      # in case of 1 item list, return itself?
+      return nil if @head.nil?
+      return @head if self.length == 1
+      # pseudocode
+
+      # option 2: (in-place) swap the first and the last node, keep going until you hit the middle
+      prev = nil
+      current = @head
+      until current.nil?
+        temp = current.next
+        # arrow switching,                                                                                                                      reassign the next node as the one prior,
+        current.next = prev
+        # move prev and current one step over
+        prev = current
+        current = temp
+      end
+      @head = prev
+      return current
+
     end
 
 
