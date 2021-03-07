@@ -136,7 +136,32 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def delete(value)
-      raise NotImplementedError
+      # what if the list is empty?
+      # return if @head.nil?
+
+      if @head.nil?
+        return
+      else
+        if @head.data == value
+          @head = @head.next
+          return
+        else # value to be deleted is not the first node
+
+          prev = @head
+          current = @head
+          until current.next.nil?
+            current = current.next
+            prev = current
+          end
+          prev.next = current.next.next
+        end
+
+      end
+      # traverse until we arrive at the node before the to be deleted node
+
+      # find the index of the value
+
+
     end
 
     # method to reverse the singly linked list
