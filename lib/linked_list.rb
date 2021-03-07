@@ -80,8 +80,8 @@ class LinkedList
 
 
     # method that returns the length of the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def length
       count = 0
       current = @head
@@ -117,10 +117,19 @@ class LinkedList
     end
 
     # method to print all the values in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def visit
-      raise NotImplementedError
+      # what happens if linked list is empty?
+
+      return nil if @head.nil?
+
+      current = @head
+      until current.nil?
+        puts current.data
+        current = current.next
+      end
+
     end
 
     # method to delete the first node found with specified value
