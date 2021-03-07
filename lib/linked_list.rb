@@ -32,8 +32,6 @@ class LinkedList
     # Space Complexity: ?
     def search(value)
       return false if @head.nil?
-      # or
-      # return false if self.length == 0
 
       current = @head
       until current.nil?
@@ -46,16 +44,38 @@ class LinkedList
 
     # method to return the max value in the linked list
     # returns the data value and not the node
+    # Time Complexity: O(n) - traversing through all of the nodes
+    # Space Complexity: O(1)
     def find_max
-      raise NotImplementedError
+      # what if there's no nodes/empty list? return nil?
+      return nil if @head.nil?
+
+      max = @head.data
+      current = @head
+      until current.nil?
+        max = [max, current.data].max
+        current = current.next
+      end
+
+      return max
     end
 
     # method to return the min value in the linked list
     # returns the data value and not the node
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_min
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      min = @head.data
+      current = @head
+
+      until current.nil?
+        min = current.data if current.data < min
+        current = current.next
+      end
+
+      return min
     end
 
 
