@@ -83,14 +83,17 @@ class LinkedList
     def get_at_index(index)
       return nil if self.length < index || @head.nil?
 
+      # need to consider edge case where index == 0, return @head.data
       current = @head
       count = 0
       until count == index
+        count += 1
         current = current.next
       end
 
       # count is equal to index
       return current.data
+
     end
 
     # method to print all the values in the linked list
