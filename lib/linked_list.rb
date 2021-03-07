@@ -4,7 +4,7 @@ class Node
   attr_reader :data # allow external entities to read value but not write
   attr_accessor :next # allow external entities to read or write next node
 
-  def initialize(value, next_node = nil)
+  def initialize(value, next_node = nil) # if next_node is not included in argument, default value is nil
     @data = value
     @next = next_node
   end
@@ -18,10 +18,12 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1) ?
     def add_first(value)
-      raise NotImplementedError
+      # first node is head. Assign the @head to be the new node and HAVE to set the next_node to be the old head
+      @head = Node.new(value, @head)
+
     end
 
     # method to find if the linked list contains a node with specified value
@@ -29,7 +31,17 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def search(value)
-      raise NotImplementedError
+      return false if @head.nil?
+      # or
+      # return false if self.length == 0
+
+      current = @head
+      until current.nil?
+        return true if current.data == value
+        current = current.next
+      end
+
+      return false
     end
 
     # method to return the max value in the linked list
@@ -51,16 +63,34 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def length
-      raise NotImplementedError
+      count = 0
+      current = @head
+
+      until current.nil?
+        count += 1
+        # move the pointer to the next node
+        current = current.next
+      end
+
+      return count
     end
 
     # method that returns the value at a given index in the linked list
     # index count starts at 0
-    # returns nil if there are fewer nodes in the linked list than the index value
+    # returns nil if there are fewer nodes in the linked list than the index value or if the list is empty
     # Time Complexity: ?
     # Space Complexity: ?
     def get_at_index(index)
-      raise NotImplementedError
+      return nil if self.length < index || @head.nil?
+
+      current = @head
+      count = 0
+      until count == index
+        current = current.next
+      end
+
+      # count is equal to index
+      return current.data
     end
 
     # method to print all the values in the linked list
@@ -118,7 +148,9 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_first
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      return @head.data
     end
 
     # method that inserts a given value as a new last node in the linked list
