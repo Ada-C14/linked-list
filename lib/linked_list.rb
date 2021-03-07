@@ -140,28 +140,26 @@ class LinkedList
       # return if @head.nil?
 
       if @head.nil?
+        # deletion on an empty list is a no-op
         return
-      else
+      else # list is not empty
+        # check if the value to be deleted is the first node
+        # if it is, reassign the head to be the next node
         if @head.data == value
           @head = @head.next
-          return
+          # return
         else # value to be deleted is not the first node
 
-          prev = @head
           current = @head
-          until current.next.nil?
+             # increment the current up until the next node's data is the value to be deleted
+          until current.next.data == value
             current = current.next
-            prev = current
           end
-          prev.next = current.next.next
+             # the next node's data is the value to be deleted
+             # so we change the reference to be the one after the next
+          current.next = current.next.next
         end
-
       end
-      # traverse until we arrive at the node before the to be deleted node
-
-      # find the index of the value
-
-
     end
 
     # method to reverse the singly linked list
