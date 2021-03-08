@@ -192,6 +192,66 @@ describe LinkedList do
         end
     end
 
+    describe "addLast & getLast" do
+        it "will add to the front if the list is empty" do
+            @list.add_last(1)
+            expect(@list.get_first).must_equal 1
+        end
+
+        it "will put new items to the rear of the list" do
+            @list.add_last(2)
+            expect(@list.length).must_equal 1
+            expect(@list.get_last).must_equal 2
+
+            @list.add_last(3)
+            expect(@list.get_first).must_equal 2
+            expect(@list.get_last).must_equal 3
+            expect(@list.length).must_equal 2
+
+            @list.add_last(4)
+            expect(@list.get_first).must_equal 2
+            expect(@list.get_last).must_equal 4
+            expect(@list.length).must_equal 3
+        end
+
+        it "will return nil with get_last for an empty list" do
+            expect(@list.get_last).must_be_nil
+        end
+    end
+
+    describe "find middle value" do
+      it 'returns nil if list is empty' do
+        expect(@list.find_middle_value).must_be_nil
+      end
+
+      it 'returns the first value if there is one item in list' do
+        @list.add_first(10)
+
+        expect(@list.find_middle_value).must_equal 10
+      end
+
+      it 'returns the middle value in an odd length list' do
+          @list.add_first(5)
+          @list.add_first(7)
+          @list.add_first(9)
+
+          expect(@list.find_middle_value).must_equal 7
+          expect(@list.length).must_equal 3
+      end
+
+      it 'returns the second middle value in an even length list' do
+          @list.add_first(5)
+          @list.add_first(7)
+          @list.add_first(9)
+          @list.add_first(11)
+
+          expect(@list.find_middle_value).must_equal 7
+          expect(@list.length).must_equal 4
+
+      end
+
+    end
+
     xdescribe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
