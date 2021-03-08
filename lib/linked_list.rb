@@ -196,13 +196,12 @@ class LinkedList
     # If there are two middle nodes, return the second middle node.
     # return nil if list is empty
     # Time Complexity: O(1/2n) == O(n)
-    # Space Complexity: ?
+    # Space Complexity: O(1)
     def find_middle_value
       # what's the middle value of an even list?
       return nil if @head.nil?
 
       index = self.length.odd? ? length/2 : (length + 1)/2
-      # p index
 
       if self.length == 1
         return @head.data
@@ -216,15 +215,30 @@ class LinkedList
 
         return current.data
       end
-
     end
 
     # find the nth node from the end and return its value
     # assume indexing starts at 0 while counting to n
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_nth_from_end(n)
-      raise NotImplementedError
+      return nil if n >= self.length
+
+      index = self.length - 1 - n
+
+      current = @head
+      count = 0
+
+      until count == index
+        count += 1
+        current = current.next
+      end
+
+      return current.data
+
+      # shorter way using a pre-exisiting method, get_at_index
+      # return self.get_at_index(index)
+
     end
 
     # checks if the linked list has a cycle. A cycle exists if any node in the

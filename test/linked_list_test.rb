@@ -252,7 +252,7 @@ describe LinkedList do
 
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
