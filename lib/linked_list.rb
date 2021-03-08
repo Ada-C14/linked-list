@@ -193,10 +193,30 @@ class LinkedList
 
     ## Advanced Exercises
     # returns the value at the middle element in the singly linked list
-    # Time Complexity: ?
+    # If there are two middle nodes, return the second middle node.
+    # return nil if list is empty
+    # Time Complexity: O(1/2n) == O(n)
     # Space Complexity: ?
     def find_middle_value
-      raise NotImplementedError
+      # what's the middle value of an even list?
+      return nil if @head.nil?
+
+      index = self.length.odd? ? length/2 : (length + 1)/2
+      # p index
+
+      if self.length == 1
+        return @head.data
+      else
+        count = 0
+        current = @head
+        until count == index
+          count += 1
+          current = current.next
+        end
+
+        return current.data
+      end
+
     end
 
     # find the nth node from the end and return its value
