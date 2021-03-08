@@ -300,7 +300,29 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def insert_ascending(value)
-      raise NotImplementedError
+      # what if the list is empty?
+      if @head.nil?
+        # add to head
+        @head = Node.new(value, @head)
+        # self.add_first(value)
+      else
+        current = @head
+        until current.nil?
+          # if the next node is nil and the value is bigger than current.data
+          # add to the last
+          if current.next.nil? && current.data < value
+            # self.add_last(value)
+            current.next = Node.new(value)
+          elsif current.data < value && current.next.data >= value
+            current.next = Node.new(value, current.next)
+          end
+
+          current = current.next
+        end
+
+        return current
+
+      end
     end
 
     # Helper method for tests

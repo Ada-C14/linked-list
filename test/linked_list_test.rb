@@ -285,4 +285,42 @@ describe LinkedList do
             expect(@list.get_at_index(3)).must_equal 1
         end
     end
+
+    describe 'insert_ascending' do
+      it 'insert value into list if list is empty' do
+        @list.insert_ascending(4)
+
+        expect(@list.length).must_equal 1
+        expect(@list.get_at_index(0)).must_equal 4
+      end
+
+      it 'inserts node at the right place in an non-empty list' do
+          @list.add_first(11)
+          @list.add_first(7)
+          @list.add_first(3)
+          @list.add_first(2)
+
+          @list.insert_ascending(5)
+
+          p @list
+          expect(@list.get_at_index(2)).must_equal 5
+          expect(@list.length).must_equal 5
+
+      end
+
+      it 'inserts node at the right place last node' do
+          @list.add_first(9)
+          @list.add_first(7)
+          @list.add_first(5)
+          @list.add_first(2)
+
+          @list.insert_ascending(11)
+
+          p @list
+          expect(@list.get_at_index(4)).must_equal 11
+          expect(@list.length).must_equal 5
+
+      end
+
+    end
 end
