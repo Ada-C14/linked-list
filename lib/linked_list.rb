@@ -229,18 +229,36 @@ class LinkedList
     end
 
     # method that inserts a given value as a new last node in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def add_last(value)
-      raise NotImplementedError
+      if @head.nil?
+        self.add_first(value)
+      else
+        current = @head
+        until current.next.nil?
+          current = current.next
+        end
+
+        # at the last node before the nil
+        current.next = Node.new(value)
+      end
     end
 
     # method that returns the value of the last node in the linked list
     # returns nil if the linked list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def get_last
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      # traversing to last node
+      current = @head
+      until current.next.nil?
+        current = current.next
+      end
+
+      return current.data
     end
 
     # method to insert a new node with specific data value, assuming the linked
