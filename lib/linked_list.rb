@@ -247,15 +247,30 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def has_cycle
-      raise NotImplementedError
+      # if there's no nil, then it's a cycle?
+      # the current  length method needs to eventually gets to a nil. What happens when there's no nil?
+      # What will the length be then?
+      # TODO: write tests for this
+
+      slow = head
+      fast = head
+
+      until slow.nil? || fast.nil? || fast.next.nil?
+        slow = slow.next
+        fast = fast.next.next
+
+        return true if slow == fast
+      end
+
+      return false
     end
 
 
     # Additional Exercises 
     # returns the value in the first node
     # returns nil if the list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def get_first
       return nil if @head.nil?
 

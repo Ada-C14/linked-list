@@ -323,4 +323,8 @@ describe LinkedList do
       end
 
     end
+
+    describe "has_cycle" do
+      # don't exactly know how to write the tests for this yet
+    end
 end
