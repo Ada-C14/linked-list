@@ -107,7 +107,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -213,7 +213,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -245,5 +245,87 @@ describe LinkedList do
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
         end
+    end
+
+    describe "find_middle_value" do
+
+        it "returns nil for an empty list" do
+            expect(@list.find_middle_value()).must_be_nil
+        end
+
+        it "returns the first value for 1 and 2 node lists" do 
+            @list.add_first(1)
+
+            expect(@list.find_middle_value()).must_equal 1
+
+            @list.add_first(2)
+
+            expect(@list.find_middle_value()).must_equal 2
+        end
+
+        it "returns the correct data for even and odd numbered lists" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1) # odd list
+
+            expect(@list.find_middle_value()).must_equal 3
+
+            @list.add_first(0) # even list
+
+            expect(@list.find_middle_value()).must_equal 2
+        end
+    end
+
+    describe "has_cycle" do
+        it "returns false for empty and single node lists" do 
+            expect(@list.has_cycle()).must_equal false
+
+            @list.add_first(1)
+            
+            expect(@list.has_cycle()).must_equal false
+        end
+
+        it "returns false if no cycle" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2) # even list
+
+            expect(@list.has_cycle()).must_equal false
+
+            @list.add_first(1) # odd list
+
+            expect(@list.has_cycle()).must_equal false
+        end
+
+        it "returns true if there is a cycle for even lists" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2) # even list
+
+            @list.create_cycle()
+
+            expect(@list.has_cycle()).must_equal true
+        end
+
+        it "returns true if there is a cycle for odd lists" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1) # odd list
+
+            @list.create_cycle()
+
+            expect(@list.has_cycle()).must_equal true
+        end
+
+    end
+
+    describe "insert_ascending" do 
+        
     end
 end

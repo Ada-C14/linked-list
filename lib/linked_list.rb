@@ -247,11 +247,16 @@ class LinkedList
   #                         where N is the number of nodes in the list.
   # Space Complexity: O(1) - only two tracking variables called  
   def find_middle_value
-    if @head && @head.next
+    
+    if @head && (@head.next.nil? || @head.next.next.nil?) # check for single and two node list
+
+      return @head.data
+    elsif @head && @head.next
+
       cur_fast = @head # travels twice as fast to end
       cur_slow = @head # will reach middle value when cur_fast reaches end
-      
-      while(cur_fast)
+
+      while(cur_fast && (cur_fast.next && cur_fast.next.next))
         cur_fast = cur_fast.next.next # hop two nodes
         cur_slow = cur_slow.next # hop one node
       end
@@ -279,16 +284,21 @@ class LinkedList
   #                                     of the entire list for worst case cycle (last node's next node is 'head')
   # Space Complexity: O(1) - other than tracking variables, no new memory introduced
   def has_cycle
-    cur_fast = @head
-    cur_slow = @head.next
+
+    return false if (@head.nil? or @head.next.nil?) # empty/single node list
+
+
+    cur_fast = @head.next.next # fast will check node after @head.next
+    cur_slow = @head.next # slow will start at @head.next
 
     while (cur_fast && cur_slow)
       # return true if nodes are the same object
       return true if cur_fast == cur_slow
 
+      # false if cur_fast can't go to next
+      return false if cur_fast.next.nil? 
+
       # move fast cur 2 nodes ahead, slow node 1
-      # along with initializing cur_slow 1 node ahead, 
-      # prevents code from returning true for single node list
       cur_fast = cur_fast.next.next
       cur_slow = cur_slow.next
     end
