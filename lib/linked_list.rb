@@ -18,26 +18,31 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1) Constant time, does not require shifting adjacent elements.
+    # Space Complexity: O(1) adding one node,  only uses memory as required for that node.
     def add_first(value)
       new_node = Node.new(value)
-      new_node.next_node = @head
+      new_node.next = @head
       @head = new_node
     end
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def search(value)
-      raise NotImplementedError
+      return false if @head.nil?
+      current = @head
+      while !current.nil?
+        return true if current.data == value
+        current = current.next
+      end
+      return false
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      raise NotImplementedError
     end
 
     # method to return the min value in the linked list
@@ -152,7 +157,7 @@ class LinkedList
 
       # navigate to last node
       current = @head
-      while current.next != nil
+      while !current.next.nil?
           current = current.next
       end
 
