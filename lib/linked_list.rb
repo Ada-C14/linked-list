@@ -95,8 +95,8 @@ class LinkedList
     end
 
     # method that inserts a given value as a new last node in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n) adding to last so have to traverse list to the end first
+    # Space Complexity: O(1)
     def add_last(value)
       # raise NotImplementedError
       current = @head
@@ -159,20 +159,39 @@ class LinkedList
     def delete(value)
       # raise NotImplementedError
       return nil if @head.nil?
-      # current = @head
-      # if current.data == value
-      #   @head = current.next
-      # else
-      #
-      # end
+
+
+      if @head.data == value
+        @head = @head.next
+        return
+      end
+
+      current = @head
+      until current.next.nil?
+        if current.next.data == value
+          current.next = current.next.next
+          return
+        end
+        current = current.next
+      end
     end
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def reverse
-      raise NotImplementedError
+      # raise NotImplementedError
+      # change the next pointer of the node to point to its prev node
+      prev = nil
+      current = @head
+      until current.nil?
+        temp = current.next
+        current.next = prev
+        prev = current
+        current = temp
+      end
+      @head = prev
     end
 
     # method that returns the value of the last node in the linked list
