@@ -103,9 +103,7 @@ class LinkedList
       if current.nil?
         @head = Node.new(value)
       else
-        until current.next.nil?
-          current = current.next
-        end
+        current = current.next until current.next.nil?
         current.next = Node.new(value)
       end
     end
@@ -117,7 +115,7 @@ class LinkedList
       # raise NotImplementedError
       current = @head
       count = 0
-      while !current.nil?
+      until current.nil?
         current = current.next
         count += 1
       end
@@ -149,17 +147,24 @@ class LinkedList
       return nil if @head.nil?
 
       current = @head
-      while !current.nil?
+      until current.nil?
         puts current.data
         current = current.next
       end
     end
 
     # method to delete the first node found with specified value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def delete(value)
-      raise NotImplementedError
+      # raise NotImplementedError
+      return nil if @head.nil?
+      # current = @head
+      # if current.data == value
+      #   @head = current.next
+      # else
+      #
+      # end
     end
 
     # method to reverse the singly linked list
@@ -172,10 +177,15 @@ class LinkedList
 
     # method that returns the value of the last node in the linked list
     # returns nil if the linked list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def get_last
-      raise NotImplementedError
+      # raise NotImplementedError
+      return nil if @head.nil?
+
+      current = @head
+      current = current.next until current.next.nil?
+      return current.data
     end
 
     ## Advanced Exercises
