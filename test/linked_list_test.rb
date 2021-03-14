@@ -326,6 +326,27 @@ describe LinkedList do
     end
 
     describe "insert_ascending" do 
-        
+        it "inserts at root for empty list" do 
+            @list.insert_ascending(1) 
+
+            expect(@list.get_first).must_equal 1
+        end
+
+        it "inserts to root for value less than root" do 
+            @list.insert_ascending(3) 
+            @list.insert_ascending(1) 
+
+            expect(@list.get_first).must_equal 1
+        end
+
+        it "inserts to end for value more than last node and in between" do 
+            @list.insert_ascending(1) 
+            @list.insert_ascending(3) 
+            @list.insert_ascending(2) 
+
+            expect(@list.get_first).must_equal 1
+            expect(@list.get_last).must_equal 3
+            expect(@list.find_middle_value).must_equal 2
+        end
     end
 end

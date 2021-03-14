@@ -320,7 +320,7 @@ class LinkedList
       
       # stops at last node or node before node that should come after 
       # a node with input value
-      while(cur.next || cur.next.data < value)
+      while(cur.next && cur.next.data < value)
         cur = cur.next
       end
 
