@@ -18,10 +18,12 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def add_first(value)
-      raise NotImplementedError
+      new_node = Node.new(value)
+      new_node.next = @head
+      @head = new_node
     end
 
     # method to find if the linked list contains a node with specified value
@@ -76,7 +78,21 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_at_index(index)
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      if index == 0
+        return @head
+      else
+        current = @head
+        current_index = 0
+
+        while current.next != nil && current_index < index - 1
+          current = current.next
+          current_index += 1
+        end
+
+        return current.data
+      end
     end
 
     # method to print all the values in the linked list
