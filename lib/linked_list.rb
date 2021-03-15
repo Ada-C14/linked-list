@@ -28,16 +28,38 @@ class LinkedList
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def search(value)
-      raise NotImplementedError
+      return false if @head.nil?
+
+      current = @head
+
+      until current.nil?
+        return true if current.data == value
+        current = current.next
+      end
+
+      return false
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      max = @head.data
+      current = @head
+
+      until current.nil?
+        if current.data > max
+          max = current.data
+        end
+
+        current = current.next
+      end
+
+      return max
     end
 
     # method to return the min value in the linked list
@@ -45,7 +67,20 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_min
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      min = @head.data
+      current = @head
+
+      until current.nil?
+        if current.data < min
+          min = current.data
+        end
+        
+        current = current.next
+      end
+
+      return min
     end
 
 
