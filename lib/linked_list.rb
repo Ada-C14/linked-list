@@ -71,7 +71,6 @@ class LinkedList
       return min
     end
 
-
     # Additional Exercises 
     # returns the value in the first node
     # returns nil if the list is empty
@@ -127,25 +126,59 @@ class LinkedList
     end
 
     # method to print all the values in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n), because it has to loop thru all linked list to print the values
+    # Space Complexity: O(1), because the variables used here is a constant
     def visit
-      raise NotImplementedError
+      all_value = []
+      return nil if @head.nil?
+      pointer = @head
+      while pointer
+        puts pointer.data
+        all_value.push(pointer.data)
+        pointer = pointer.next
+      end
+      return all_value
     end
 
     # method to delete the first node found with specified value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n), because the worst case scenario is to loop thru all linked list to find the value
+    # Space Complexity: O(1), because the variables used here is a constant
     def delete(value)
-      raise NotImplementedError
+      if @head.nil?
+        # do nothing
+      elsif @head.data == value
+        @head = @head.next
+      else
+        pointer = @head
+        while pointer 
+          if pointer.next.data == value
+            pointer.next = pointer.next.next
+            break
+          else
+            pointer = pointer.next
+          end
+        end
+      end
     end
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n), because it has to loop thru all linked list to do the reverse
+    # Space Complexity: O(1), because the variables used here is a constant
     def reverse
-      raise NotImplementedError
+      return @head if @head.nil? || @head.next.nil?
+      
+      pointer = @head
+      previous = nil
+      while pointer
+        temp = pointer.next
+        pointer.next = previous
+        previous = pointer
+        pointer = temp
+      end
+
+      @head = previous
+      return @head      
     end
 
     # method that returns the value of the last node in the linked list
