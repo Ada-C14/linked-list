@@ -230,10 +230,25 @@ class LinkedList
 
     # method to insert a new node with specific data value, assuming the linked
     # list is sorted in ascending order
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def insert_ascending(value)
-      raise NotImplementedError
+      current_node = @head
+      if @head.nil? || value <= @head.data
+        add_first(value)
+        return
+      end
+      while current_node.next
+        if current_node.data <= value && current_node.next.data >= value
+          new_node = Node.new(value, current_node.next)
+          current_node.next = new_node
+          return
+        else
+          current_node = current_node.next
+        end
+
+      end
+      add_last(value)
     end
 
     # Helper method for tests
