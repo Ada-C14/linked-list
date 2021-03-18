@@ -107,7 +107,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -204,7 +204,7 @@ describe LinkedList do
             @list.add_first(2)
 
             # Act
-            @delete(9)
+            @list.delete(9)
 
             # Assert
             expect(@list.get_last).must_equal 10
@@ -244,6 +244,20 @@ describe LinkedList do
             expect(@list.get_at_index(1)).must_equal 3
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
+        end
+    end
+
+    describe "find middle value" do
+        it 'can retrive the middle value from the list' do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            expect(@list.find_middle_value).must_equal 3
+            @list.delete(1)
+            expect(@list.find_middle_value).must_equal 4
         end
     end
 end

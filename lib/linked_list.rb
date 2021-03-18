@@ -189,10 +189,18 @@ class LinkedList
 
     ## Advanced Exercises
     # returns the value at the middle element in the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_middle_value
-      raise NotImplementedError
+      # this method will return the value of the element at the index position
+      # represented by integer division of the list length by 2, regardless of
+      # whether the length is odd or even i.e. the "first middle" value will be
+      # returned for a list with even length.
+      return nil if self.length == 0
+
+      list_length = self.length
+      return self.get_at_index(list_length/2)
+
     end
 
     # find the nth node from the end and return its value
