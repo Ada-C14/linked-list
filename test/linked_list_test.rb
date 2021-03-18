@@ -246,4 +246,15 @@ describe LinkedList do
             expect(@list.get_at_index(3)).must_equal 1
         end
     end
+
+    describe "visit" do
+        it 'can print all values in the list' do
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            expect(@list.visit).must_equal [1,2,3,4]
+        end
+    end
 end
