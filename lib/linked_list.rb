@@ -150,10 +150,17 @@ class LinkedList
 
     # method that returns the value of the last node in the linked list
     # returns nil if the linked list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n), because it has to loop thru all linked list to get the last data
+    # Space Complexity: O(1), because the variables used here is a constant
     def get_last
-      raise NotImplementedError
+      return nil if @head.nil?
+      
+      pointer = @head
+      while pointer.next
+        pointer = pointer.next 
+      end
+      
+      return pointer.data
     end
   
     ## Advanced Exercises
