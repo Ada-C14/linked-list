@@ -257,4 +257,33 @@ describe LinkedList do
             expect(@list.visit).must_equal [1,2,3,4]
         end
     end
+
+    describe "Optional: find_middle_value" do
+        it 'returns nil if n is outside the bounds of the list' do
+            expect(@list.find_middle_value).must_be_nil
+        end
+
+        it 'can retrieve an item in the middle for the odd number of nodes in teh linkied list' do
+            @list.add_first(1)
+            expect(@list.find_middle_value).must_equal 1
+
+            @list.add_first(2)
+            @list.add_first(3)
+            expect(@list.find_middle_value).must_equal 2
+
+            @list.add_first(4)
+            @list.add_first(5)
+            expect(@list.find_middle_value).must_equal 3
+        end
+
+        it 'can retrieve an item in the middle for the even number of nodes in teh linkied list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            expect(@list.find_middle_value).must_equal 1
+
+            @list.add_first(3)
+            @list.add_first(4)
+            expect(@list.find_middle_value).must_equal 2
+        end
+    end
 end
