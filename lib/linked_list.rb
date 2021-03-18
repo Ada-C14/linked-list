@@ -217,10 +217,15 @@ class LinkedList
     # checks if the linked list has a cycle. A cycle exists if any node in the
     # linked list links to a node already visited.
     # returns true if a cycle is found, false otherwise.
-    # Time Complexity: ?
-    # Space Complexity: ?
-    def has_cycle
-      raise NotImplementedError
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def has_cycle?
+      pointer = @head
+      while pointer
+        pointer = pointer.next
+        return true if pointer == @head
+      end
+      return false
     end
 
     # method to insert a new node with specific data value, assuming the linked
