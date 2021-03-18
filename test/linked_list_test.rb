@@ -259,11 +259,11 @@ describe LinkedList do
     end
 
     describe "Optional: find_middle_value" do
-        it 'returns nil if n is outside the bounds of the list' do
+        it 'returns nil if an empty list' do
             expect(@list.find_middle_value).must_be_nil
         end
 
-        it 'can retrieve an item in the middle for the odd number of nodes in teh linkied list' do
+        it 'can retrieve an item in the middle for the odd number of nodes in the linkied list' do
             @list.add_first(1)
             expect(@list.find_middle_value).must_equal 1
 
@@ -276,7 +276,7 @@ describe LinkedList do
             expect(@list.find_middle_value).must_equal 3
         end
 
-        it 'can retrieve an item in the middle for the even number of nodes in teh linkied list' do
+        it 'can retrieve an item in the middle for the even number of nodes in the linkied list' do
             @list.add_first(1)
             @list.add_first(2)
             expect(@list.find_middle_value).must_equal 1
@@ -284,6 +284,57 @@ describe LinkedList do
             @list.add_first(3)
             @list.add_first(4)
             expect(@list.find_middle_value).must_equal 2
+        end
+    end
+
+    describe "Optional: has_cycle" do
+        it 'returns false for empty linked list' do
+            expect(@list.has_cycle).must_equal false
+        end
+
+        it 'returns false if a cycle does not exist' do
+            # Act
+            @list.add_first(5)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            # Assert
+            expect(@list.has_cycle).must_equal false
+        end
+
+        it 'returns true if a cycle exists' do
+            @list.add_first(5)
+            @list.add_first(2)
+            @list.add_first(1)
+            @list.add_first(1)
+            @list.add_first(1)
+            @list.add_first(1)
+            @list.create_cycle
+
+            # Assert
+            expect(@list.has_cycle).must_equal true
+        end
+    end
+
+    describe "Optional: insert_ascending" do
+        it 'can insert values to an empty list' do
+            # Act
+            @list.insert_ascending(3)
+
+            # Assert
+            expect(@list.get_first).must_equal 3
+        end
+
+        it 'can insert values to the beginning if the linked list is sorted in ascending order' do
+            @list.add_first(5)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            @list.insert_ascending(0)
+            expect(@list.visit).must_equal [0,1,2,5]
+
+            @list.insert_ascending(4)
+            expect(@list.visit).must_equal [0,1,2,4,5]
         end
     end
 end
