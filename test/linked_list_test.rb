@@ -24,6 +24,7 @@ describe LinkedList do
 
             # Assert
             expect(@list.get_at_index(0)).must_equal 3
+            expect(@list.get_first).must_equal 3
         end
 
         it 'will put the last added item to the front of the list' do
@@ -33,17 +34,20 @@ describe LinkedList do
 
             # Assert
             expect(@list.get_at_index(0)).must_equal 2
+            expect(@list.get_first).must_equal 2
 
             # Act again
             @list.add_first(3)
 
             # Assert
             expect(@list.get_at_index(0)).must_equal 3
+            expect(@list.get_first).must_equal 3
         end
 
         it 'will return `nil` for `getFirst` if the list is empty' do
 
             expect(@list.get_at_index(0)).must_be_nil
+            expect(@list.get_first).must_be_nil
         end
     end
 
