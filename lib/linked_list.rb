@@ -127,7 +127,8 @@ class LinkedList
 
     # method to print all the values in the linked list
     # Time Complexity: O(n), because it has to loop thru all linked list to print the values
-    # Space Complexity: O(1), because the variables used here is a constant
+    # Space Complexity: O(n)/O(1), because add_value depends on the length of the linked list, it would be O(n); 
+    #                         unless we don't need all_value, it would be O(1) for just print out the data.
     def visit
       all_value = []
       return nil if @head.nil?
