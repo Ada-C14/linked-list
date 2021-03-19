@@ -31,7 +31,7 @@ class LinkedList
     def search(value)
       current = @head
       until current == nil
-        if current.value == value
+        if current.data == value
           return true
         else
           current = current.next
@@ -43,16 +43,18 @@ class LinkedList
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      current_max = @head.value
+      return nil if @head.nil?
+
+      current_max = @head.data
       current = @head
 
       until current == nil
-        if current_max < current.value
-          current_max = current.value
+        if current_max < current.data
+          current_max = current.data
         end
         current = current.next
       end
-      return current_max.value
+      return current_max
     end
 
     # method to return the min value in the linked list
@@ -60,16 +62,18 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def find_min
-      current_min = @head.value
+      return nil if @head.nil?
+
+      current_min = @head
       current = @head
 
       until current == nil
-        if current_min > current.value
-          current_min = current.value
+        if current_min.data > current.data
+          current_min = current
         end
         current = current.next
       end
-      return current_min.value
+      return current_min.data
     end
 
 
@@ -100,14 +104,14 @@ class LinkedList
     # Time Complexity: O(n), where n = length of list
     # Space Complexity: O(1)
     def length
-      return nil if @head.value == nil
+      return 0 if @head.nil?
 
       current = @head
       count = 0
 
       until current == nil
-          current = current.next
-          count += 1
+        current = current.next
+        count += 1
       end
       return count
     end
@@ -118,6 +122,8 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def get_at_index(index)
+      return nil if @head.nil?
+
       current = @head
       count = 0
 
@@ -203,18 +209,20 @@ class LinkedList
   
     ## Advanced Exercises
     # returns the value at the middle element in the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+
     def find_middle_value
-      raise NotImplementedError
+      return get_at_index(length / 2)
     end
 
     # find the nth node from the end and return its value
     # assume indexing starts at 0 while counting to n
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_nth_from_end(n)
-      raise NotImplementedError
+      return nil if n >= length
+      return get_at_index(length - n - 1)
     end
 
     # checks if the linked list has a cycle. A cycle exists if any node in the
@@ -227,20 +235,39 @@ class LinkedList
       #1st marker move 1 node at a Time
       #2nd marker move 2 nodes at a Time
       #if they reach the same value at some point, it means there is a cycle
-      pointer = @head
-      while pointer
-        pointer = pointer.next
-        return true if pointer == @head
+      return nil if @head.nil?
+
+      slow = @head
+      fast = @head
+
+      while fast != nil && fast.next != nil 
+        slow = slow.next
+        fast = fast.next.next
+        return true if slow == fast
       end
       return false
     end
 
     # method to insert a new node with specific data value, assuming the linked
     # list is sorted in ascending order
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def insert_ascending(value)
-      raise NotImplementedError
+      return nil if @head.nil? || value == nil
+
+      current = @head
+      while current.next != nil && current.next.data < value
+        current = current.next
+      end
+      
+      ascending = Node.new(value, current.next)
+      
+      if current == @head && value < current.data
+        @head = ascending
+      else
+        current.next = ascending
+      end
+
     end
 
     # Helper method for tests
