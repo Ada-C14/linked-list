@@ -113,7 +113,15 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def length
-      raise NotImplementedError
+      count = 0
+      current = @head
+
+      until current.nil?
+        count += 1
+        current = current.next
+      end
+      
+      return count
     end
 
     # method that returns the value at a given index in the linked list
@@ -139,14 +147,35 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def visit
-      raise NotImplementedError
+      if @head.nil?
+        puts "linked list is empty"
+      else 
+        current = @head
+        until current.nil?
+          puts current.data
+          current = current.next
+        end
+      end
     end
 
     # method to delete the first node found with specified value
     # Time Complexity: ?
     # Space Complexity: ?
     def delete(value)
-      raise NotImplementedError
+      return if @head.nil?
+
+      if @head.data == value
+        @head = @head.next
+      else
+        current = @head
+        until current.next == nil
+          if current.next.data == value
+            temp = current.next
+            current.next = temp.next
+          end
+          current = current.next
+        end
+      end
     end
 
     # method to reverse the singly linked list
@@ -162,7 +191,14 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_last
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      current = @head
+      until current.next.nil?
+        current = current.next
+      end
+      return current.data
+      
     end
   
     ## Advanced Exercises
@@ -213,3 +249,4 @@ class LinkedList
       current.next = @head # make the last node link to first node
     end
 end
+ 
