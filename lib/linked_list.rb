@@ -70,7 +70,7 @@ class LinkedList
         current = current.next
       end
       return current_min.value
-  end
+    end
 
 
     # Additional Exercises 
@@ -130,7 +130,6 @@ class LinkedList
         end
       end
       return current.data
-    end
     end
 
     # method to print all the values in the linked list
