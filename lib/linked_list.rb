@@ -18,82 +18,133 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(1)
+    # Space Complexity: o(1)
     def add_first(value)
+      
+      # if head is nil
+      return @head = Node.new(value) if @head.nil?
+      
+      # if head contains data
       new_node = Node.new(value)
+      new_node.next = @head
       @head = new_node
+      return @head
     end
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def search(value)
       
       current_node = @head
       
-      until current_node.next == nil
-        if current_node.data == value
-          return true
-        else 
-          current_node.data = current_node.next
-        end
-
+      while current_node
+        return true if current_node.data == value
+        current_node = current_node.next
       end
-    
+      return false
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def find_max
+      return nil if @head.nil?
+      
       current_node = @head
-      current_value = current_node.data
+      max = 0
 
-      until current_node.next == nil
-        current_value = 
-      end 
+      while current_node
+        if current_node.data > max
+          max = current_node.data
+          current_node = current_node.next
+        else
+          current_node = current_node.next
+        end
+      end
+      return max
     end
 
     # method to return the min value in the linked list
     # returns the data value and not the node
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def find_min
-      raise NotImplementedError
+      return nil if @head.nil?
+      current_node = @head
+      min = current_node.data 
+
+      while current_node
+        if current_node.data < min
+          min = current_node.data
+          current_node = current_node.next
+        else
+          current_node = current_node.next
+        end    
+      end
+      return min
     end
 
 
     # Additional Exercises 
     # returns the value in the first node
     # returns nil if the list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(1)
+    # Space Complexity: o(1)
     def get_first
-      raise NotImplementedError
+      return @head ? @head.data : nil
     end
 
     # method that inserts a given value as a new last node in the linked list
     # Time Complexity: ?
     # Space Complexity: ?
     def add_last(value)
-      raise NotImplementedError
+      last_node = Node.new(value) 
+      
+      if @head.nil?
+        @head = last_node
+      else 
+        current_node = @head
+        until current_node.next.nil?
+          current_node = current_node.next
+        end
+        current_node.next = last_node
+      end
     end
 
     # method that returns the length of the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def length
-      raise NotImplementedError
+      current_node = @head
+      count = 0
+
+      while current_node
+        count += 1
+        current_node = current_node.next
+      end
+      return count
     end
 
     # method that returns the value at a given index in the linked list
     # index count starts at 0
     # returns nil if there are fewer nodes in the linked list than the index value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def get_at_index(index)
-      raise NotImplementedError
+      
+      current_node = @head
+      count = 0
+
+      while current_node
+        return current_node.data if count == index
+        current_node = current_node.next
+        count += 1
+      end
+      return nil    
     end
 
     # method to print all the values in the linked list
