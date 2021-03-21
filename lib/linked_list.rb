@@ -175,7 +175,7 @@ class LinkedList
       return nil if @head == nil || @head.next == nil
       previous = @head
       current = @head.next
-      # previous.next = nil
+      previous.next = nil
       
       while current != nil
         temp = current.next # save 3 in the temp var
