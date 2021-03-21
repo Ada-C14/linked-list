@@ -107,7 +107,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -204,7 +204,7 @@ describe LinkedList do
             @list.add_first(2)
 
             # Act
-            @delete(9)
+            @list.delete(9)
 
             # Assert
             expect(@list.get_last).must_equal 10
@@ -213,7 +213,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -232,12 +232,54 @@ describe LinkedList do
         end
     end
 
+    describe "Optional:  find_middle_value" do
+        it 'returns nil if list is empty' do
+            expect(@list.find_middle_value).must_be_nil
+        end
+
+        it 'can return second of the middle values of an even length list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+
+            expect(@list.find_middle_value).must_equal 2
+        end
+
+        it 'can return the middle values of an odd length list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+            @list.add_first(5)
+
+            expect(@list.find_middle_value).must_equal 3
+        end
+
+        it 'can return the middle values of 1 element list' do
+            @list.add_first(1)
+
+            expect(@list.find_middle_value).must_equal 1
+        end
+
+        it 'can return the second element of a 2 element list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            p @list
+            
+            expect(@list.find_middle_value).must_equal 1
+        end
+    end
+
     describe "reverse" do
         it 'can retrieve an item at index n from the end in the list' do
+
+            
             @list.add_first(4)
             @list.add_first(3)
             @list.add_first(2)
             @list.add_first(1)
+
             @list.reverse
 
             expect(@list.get_at_index(0)).must_equal 4
