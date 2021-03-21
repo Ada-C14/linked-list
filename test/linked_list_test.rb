@@ -276,7 +276,6 @@ describe LinkedList do
             @list.add_first(2)
             @list.add_first(3)
             @list.add_first(4)
-            @list.visit
 
             expect(@list.find_nth_from_end(0)).must_equal 1
             expect(@list.find_nth_from_end(1)).must_equal 2
