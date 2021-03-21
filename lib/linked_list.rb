@@ -19,7 +19,7 @@ class LinkedList
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
     # Time Complexity: O(1)
-    # Space Complexity: O(1) ??????
+    # Space Complexity: O(1)
     def add_first(value)
       to_add = Node.new(value, next_node = @head)
       @head = to_add
@@ -226,19 +226,66 @@ class LinkedList
 
     # find the nth node from the end and return its value
     # assume indexing starts at 0 while counting to n
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_nth_from_end(n)
-      raise NotImplementedError
+
+      i = @head
+      j = @head
+      counter = 0
+
+      while counter < n && i
+        i = i.next
+        counter += 1
+      end
+
+      if i
+        until !i.next
+          i = i.next
+          j = j.next
+        end
+      else
+        return nil
+      end
+
+      return j.data
     end
 
     # checks if the linked list has a cycle. A cycle exists if any node in the
     # linked list links to a node already visited.
     # returns true if a cycle is found, false otherwise.
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def has_cycle
-      raise NotImplementedError
+
+      return false unless @head
+      return false unless @head.next
+
+      # hash way - space: o(1)
+      # hash_table = {}
+      # current = @head
+      # while current
+      #   if hash_table[current]
+      #     return true
+      #   else
+      #     hash_table[current] = true
+      #   end
+      #   current = current.next
+      # end
+      # return false
+
+      i = @head
+      j = @head
+
+      # condition really for case of no cycle?
+      while j && j.next
+        i = i.next
+        j = j.next.next
+        return true if i == j
+      end
+
+      return false
+
     end
 
     # method to insert a new node with specific data value, assuming the linked
