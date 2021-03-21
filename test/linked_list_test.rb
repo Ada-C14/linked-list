@@ -103,7 +103,34 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "find_middle_value" do
+
+      it "returns nil for an empty list" do
+        expect(@list.find_middle_value).must_be_nil
+      end
+
+      it "returns the middle for an odd length list" do
+        @list.add_first(1)
+        @list.add_first(2)
+        @list.add_first(3)
+        @list.add_first(4)
+        @list.add_first(5)
+
+        expect(@list.find_middle_value).must_equal 3
+      end
+
+      it "returns the 2nd middle for an even length list" do
+        @list.add_last(1)
+        @list.add_last(2)
+        @list.add_last(3)
+        @list.add_last(4)
+
+        expect(@list.find_middle_value).must_equal 3
+      end
+
+    end
+
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -209,6 +236,36 @@ describe LinkedList do
         end
     end
 
+    describe "insert_ascending" do
+
+      it "inserts at beginning for empty list" do
+        @list.insert_ascending(1)
+        expect(@list.length).must_equal 1
+        expect(@list.get_first).must_equal 1
+      end
+
+      it "inserts correctly for nonempty list" do
+        @list.add_first(9)
+        @list.add_first(8)
+        @list.add_first(4)
+        @list.add_first(1)
+
+        @list.insert_ascending(5)
+        expect(@list.get_at_index(2)).must_equal 5
+      end
+
+      it "inserts at head correctly" do
+        @list.add_first(9)
+        @list.add_first(8)
+        @list.add_first(4)
+        @list.add_first(1)
+
+        @list.insert_ascending(0)
+        expect(@list.get_at_index(0)).must_equal 0
+        expect(@list.get_first).must_equal 0
+      end
+    end
+
     xdescribe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
@@ -228,7 +285,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "reverse" do
+    describe "reverse" do
         it 'can retrieve an item at index n from the end in the list' do
             @list.add_first(4)
             @list.add_first(3)

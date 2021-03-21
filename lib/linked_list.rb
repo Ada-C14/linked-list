@@ -152,13 +152,8 @@ class LinkedList
     end
 
     # method to delete the first node found with specified value
-    # Time Complexity: ?
-    # Space Complexity: ?
-    #  1
-    # [1, 2, 3, 4, nil]
-    #  c
-    #  p
-    # node to delete is head
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def delete(value)
       # empty list
       return if !@head
@@ -176,16 +171,25 @@ class LinkedList
         end
   
         previous.next = current.next
-
       end
     end
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def reverse
-      raise NotImplementedError
+      i = nil
+      current = @head
+      
+      until !current
+        j = current.next
+        current.next = i
+        i = current
+        current = j
+      end
+
+      @head = i
     end
 
     # method that returns the value of the last node in the linked list
@@ -205,10 +209,19 @@ class LinkedList
   
     ## Advanced Exercises
     # returns the value at the middle element in the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_middle_value
-      raise NotImplementedError
+      return nil if !@head
+      i = @head
+      j = @head
+      
+      while j && j.next
+        i = i.next
+        j = j.next.next
+      end
+      
+      return i.data
     end
 
     # find the nth node from the end and return its value
@@ -230,10 +243,28 @@ class LinkedList
 
     # method to insert a new node with specific data value, assuming the linked
     # list is sorted in ascending order
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def insert_ascending(value)
-      raise NotImplementedError
+      @head = Node.new(value) if !@head
+
+      current = @head
+      previous = current
+
+      if current.data > value
+        @head = Node.new(value, next_node = previous)
+      else
+        until !current
+          if current.data > value
+            to_add = Node.new(value, next_node = current)
+            previous.next = to_add
+            return
+          end
+          previous = current
+          current = current.next
+        end
+      end
+
     end
 
     # Helper method for tests
