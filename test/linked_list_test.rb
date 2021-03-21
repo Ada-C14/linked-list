@@ -265,7 +265,6 @@ describe LinkedList do
         it 'can return the second element of a 2 element list' do
             @list.add_first(1)
             @list.add_first(2)
-            p @list
             
             expect(@list.find_middle_value).must_equal 1
         end
