@@ -21,10 +21,13 @@ class LinkedList
     # Time Complexity: o(1)
     # Space Complexity: o(1)
     def add_first(value)
-      # Create a new Node
+  
       new_node = Node.new(value)
-      # Make the new node's next field be the current head of the list
-      new_node.next_node = @head
+      
+      if @head != nil?
+        new_node.next = @head
+      end
+
       # Set the head to become the new node
       @head = new_node
     end
@@ -71,15 +74,17 @@ class LinkedList
     # Time Complexity: o(n)
     # Space Complexity: o(1)
     def find_min
-      current = @head
+      return nil if @head.nil?
+
       min = @head.data
+      current = @head
+      
 
       until current.nil?
-        current = current.next
-
         if current.data < min
           min = current.data
         end
+        current = current.next
       end
 
       return min
@@ -105,7 +110,7 @@ class LinkedList
 
       if @head.nil?
         @head = new_node
-        ret
+        return
       end
 
       current = @head
@@ -124,7 +129,7 @@ class LinkedList
       count = 0
       current = @head
 
-      until current.nil
+      until current.nil?
         count += 1
         current = current.next
       end
@@ -138,7 +143,7 @@ class LinkedList
     # Time Complexity: o(n)
     # Space Complexity: 0(1)
     def get_at_index(index)
-      return nil if @head.nil || self.length < index
+      return nil if @head.nil? || self.length < index
       
       current = @head
       counter = 0
@@ -175,15 +180,18 @@ class LinkedList
       # if the node to remove is the head, then the head becomes the next element. 
       if @head.data == value
         @head = @head.next
-      else
-        current = @head
-
-        until current.next.data == value
-          current = current.next
-        end
+        return
       end
 
-      current.next = current.next.next
+      current = @head
+      until current.next.nil?
+        if current.next.data == value
+          current.next = current.next.next
+          return
+        end
+        current = current.next
+      end
+    
     end
 
     # method to reverse the singly linked list
@@ -198,7 +206,7 @@ class LinkedList
 
       until current.nil?
         temp = current.next
-        current.nex = previous_node
+        current.next = previous_node
 
         previous_node = current
         current = temp
@@ -214,10 +222,10 @@ class LinkedList
       return nil if @head.nil?
 
       current = @head
-      until current.nex.nil?
+      until current.next.nil?
         current = current.next
-
       end
+
       return current.data
     end
   
