@@ -148,10 +148,26 @@ class LinkedList
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def reverse
-      raise NotImplementedError
+      return nil if @head.nil?
+      return if @head.next.nil?
+
+      slow = @head
+      slow.next = nil
+      fast = @head.next
+      temp = fast.next
+
+      while fast.next != nil
+        fast.next = slow
+        slow = fast
+        fast = temp
+        temp = temp.next
+      end
+
+      fast.next = slow
+      @head = fast
     end
 
     # method that returns the value of the last node in the linked list
@@ -160,6 +176,7 @@ class LinkedList
     # Space Complexity: O(1)
     def get_last
       return nil if @head == nil
+      return nil if has_cycle()
       current = @head
       while current.next != nil
         current = current.next
