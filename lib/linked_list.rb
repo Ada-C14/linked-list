@@ -169,35 +169,77 @@ class LinkedList
   
     ## Advanced Exercises
     # returns the value at the middle element in the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_middle_value
-      raise NotImplementedError
+      fast = @head
+      slow = @head
+
+      while fast.next != nil
+        slow = slow.next
+        fast = fast.next.next
+      end
+
+      return slow
     end
 
     # find the nth node from the end and return its value
     # assume indexing starts at 0 while counting to n
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_nth_from_end(n)
-      raise NotImplementedError
+      return nil if has_cycle()
+      return nil if @head.nil?
+      fast = @head
+      slow = @head
+      
+      n.times do
+        return nil if fast.next == nil
+        fast = fast.next
+      end
+
+      while fast.next != nil
+        fast = fast.next
+        slow = slow.next
+      end
+
+      return slow.data
     end
 
     # checks if the linked list has a cycle. A cycle exists if any node in the
     # linked list links to a node already visited.
     # returns true if a cycle is found, false otherwise.
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def has_cycle
-      raise NotImplementedError
+      return false if @head.nil?
+
+      fast = @head
+      slow = @head
+
+      while fast != slow
+        return false if fast.next.nil?
+        fast = fast.next.next
+        slow = slow.next
+      end
+
+      return true
     end
 
     # method to insert a new node with specific data value, assuming the linked
     # list is sorted in ascending order
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def insert_ascending(value)
-      raise NotImplementedError
+      @head.data = value if @head.nil?
+      current = @head
+
+      while current.next.data < value
+        current = current.next
+      end
+
+      temp = current.next
+      current.next = Node.new(value,temp)
     end
 
     # Helper method for tests
