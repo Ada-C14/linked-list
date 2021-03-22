@@ -122,8 +122,9 @@ class LinkedList
     def visit
       return nil if @head.nil?
       current = @head
-      while current.next != nil
+      while current != nil || current.next != nil 
         print current.data
+        current = current.next
       end
     end
 
@@ -133,8 +134,15 @@ class LinkedList
     def delete(value)
       return nil if @head.nil?
       current = @head
+      if @head.data == value
+        @head = @head.next
+      end
+
       while current.next != nil
-        
+        if current.next.data == value
+          current.next = current.next.next
+        end
+        current = current.next
       end
     end
 
@@ -148,10 +156,15 @@ class LinkedList
 
     # method that returns the value of the last node in the linked list
     # returns nil if the linked list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def get_last
-      raise NotImplementedError
+      return nil if @head == nil
+      current = @head
+      while current.next != nil
+        current = current.next
+      end
+      return current.data
     end
   
     ## Advanced Exercises
