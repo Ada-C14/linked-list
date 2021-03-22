@@ -127,8 +127,8 @@ class LinkedList
 
     current = @head
 
-    index.times do |i|
-      if @current.next.nil?
+    index.times do
+      if current.next.nil?
         return nil
       else
         current = current.next
