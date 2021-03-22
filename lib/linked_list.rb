@@ -29,7 +29,15 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
   def search(value)
-    raise NotImplementedError
+    current = @head
+
+    until current == nil
+      if current.data == value
+        return true
+      end
+      current = current.next
+    end
+    return false
   end
 
     # method to return the max value in the linked list
