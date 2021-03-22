@@ -34,7 +34,7 @@ class LinkedList
   # Time Complexity: O(n)
   # >> Must check every single node in linked list
   # Space Complexity: O(1)
-  # >> Just checking for membership
+  # >> Just checking for membership; only ever store current_node
   def search(value)
     current_node = @head
 
@@ -50,15 +50,37 @@ class LinkedList
   # method to return the max value in the linked list
   # returns the data value and not the node
   def find_max
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current_node = @head
+    max = current_node.data
+
+    until current_node.nil?
+      max = current_node.data if current_node.data > max
+      current_node = current_node.next
+    end
+
+    return max
   end
 
   # method to return the min value in the linked list
   # returns the data value and not the node
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> have to traverse entire linked list (unless we know it's sorted...)
+  # Space Complexity: O(1)
+  # >> store current_node and min regardless of how long LL is
   def find_min
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current_node = @head
+    min = current_node.data
+
+    until current_node.nil?
+      min = current_node.data if current_node.data < min
+      current_node = current_node.next
+    end
+
+    return min
   end
 
 
@@ -68,7 +90,7 @@ class LinkedList
   # Time Complexity: ?
   # Space Complexity: ?
   def get_first
-    raise NotImplementedError
+
   end
 
   # method that inserts a given value as a new last node in the linked list
