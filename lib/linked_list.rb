@@ -114,7 +114,15 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
   def length
-    raise NotImplementedError
+    current = @head
+
+    length = 0
+
+    until current.nil?
+      current = current.next
+      length += 1
+    end
+    return length
   end
 
     # method that returns the value at a given index in the linked list
