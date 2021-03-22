@@ -119,19 +119,44 @@ class LinkedList
   end
 
   # method that returns the length of the singly linked list
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> traverse length of ll to get num nodes in list
+  # Space Complexity: O(1)
+  # >> store len integer
   def length
-    raise NotImplementedError
+    return 0 if @head.nil?
+
+    len = 1
+    current_node = @head.next
+
+    until current_node.nil?
+      len += 1
+      current_node = current_node.next
+    end
+
+    return len
   end
 
   # method that returns the value at a given index in the linked list
   # index count starts at 0
   # returns nil if there are fewer nodes in the linked list than the index value
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
   def get_at_index(index)
-    raise NotImplementedError
+    return nil if @head.nil?
+    return @head.data if index.zero?
+
+    node_num = 0
+    current_node = @head
+
+    until node_num == index
+      return nil if current_node.nil?
+
+      current_node = current_node.next
+      node_num += 1
+    end
+
+    return current_node.data
   end
 
   # method to print all the values in the linked list

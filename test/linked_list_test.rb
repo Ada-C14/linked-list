@@ -163,7 +163,7 @@ describe LinkedList do
       @list.add_first(3)
       @list.add_first(2)
 
-        # delete first node (requires updating head)
+      # delete first node (requires updating head)
       @list.delete(2)
       expect(@list.get_first).must_equal 3
       expect(@list.length).must_equal 4
@@ -171,7 +171,7 @@ describe LinkedList do
       expect(@list.find_max).must_equal 10
       expect(@list.find_min).must_equal 3
 
-        # delete last node
+      # delete last node
       @list.delete(10)
       expect(@list.get_at_index(0)).must_equal 3
       expect(@list.length).must_equal 3
@@ -179,7 +179,7 @@ describe LinkedList do
       expect(@list.find_max).must_equal 9
       expect(@list.find_min).must_equal 3
 
-        # delete middle node (requires updating head)
+      # delete middle node (requires updating head)
       @list.delete(4)
       expect(@list.get_at_index(0)).must_equal 3
       expect(@list.length).must_equal 2
@@ -189,17 +189,17 @@ describe LinkedList do
     end
 
     it 'can delete from the middle' do
-        # Arrange
+      # Arrange
       @list.add_last(9)
       @list.add_last(10)
       @list.add_first(4)
       @list.add_first(3)
       @list.add_first(2)
 
-        # Act
+      # Act
       @list.delete(9)
 
-        # Assert
+      # Assert
       expect(@list.get_last).must_equal 10
       expect(@list.length).must_equal 4
       expect(@list.get_first).must_equal 2
