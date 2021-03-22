@@ -105,7 +105,7 @@ class LinkedList
   # >> adding one new node each time (reference in next for an existing node, add new node)
   def add_last(value)
     if @head.nil?
-      @head.data = value
+      @head = Node.new(value)
       return
     end
 
@@ -141,7 +141,9 @@ class LinkedList
   # index count starts at 0
   # returns nil if there are fewer nodes in the linked list than the index value
   # Time Complexity: O(n)
+  # >> Traverse up to n nodes to get value at index position
   # Space Complexity: O(1)
+  # >> store node_num and current_node
   def get_at_index(index)
     return nil if @head.nil?
     return @head.data if index.zero?
@@ -160,17 +162,37 @@ class LinkedList
   end
 
   # method to print all the values in the linked list
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> Traverse entire LL to print all values
+  # Space Complexity: O(1)
+  # >> store current node
   def visit
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current_node = @head
+
+    until current_node.nil?
+      p current_node.data
+      current_node = current_node.next
+    end
   end
 
   # method to delete the first node found with specified value
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> search up to entire list to find node with specified value
+  # Space Complexity: O(1)
+  # >> keep track of current node
   def delete(value)
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current_node = @head
+    until current_node.next.data == value
+      return nil if current_node.nil?
+
+      current_node = current_node.next
+    end
+
+    current_node.next = current_node.next.next
   end
 
   # method to reverse the singly linked list
