@@ -87,17 +87,35 @@ class LinkedList
   # Additional Exercises
   # returns the value in the first node
   # returns nil if the list is empty
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(1)
+  # >> pointer to head
+  # Space Complexity: O(1)
+  # >> don't need to allocate space for vars - just returning value of first node if exists
   def get_first
+    return nil if @head.nil?
 
+    return @head.data
   end
 
   # method that inserts a given value as a new last node in the linked list
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> Have to continue traversing linked list until reach last node (next is nil)
+  # >> Conversely, if we had a tail pointer, then this could be O(1) in a doubly-linked list
+  # Space Complexity: O(1)
+  # >> adding one new node each time (reference in next for an existing node, add new node)
   def add_last(value)
-    raise NotImplementedError
+    if @head.nil?
+      @head.data = value
+      return
+    end
+
+    current_node = @head
+
+    until current_node.next.nil?
+      current_node = current_node.next
+    end
+
+    current_node.next = Node.new(value)
   end
 
   # method that returns the length of the singly linked list
