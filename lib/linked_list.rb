@@ -184,7 +184,17 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def reverse
-      raise NotImplementedError
+      current = @head
+      previous_node = nil
+
+      while !current.nil?
+        next_node = current.next
+        current.next = previous_node
+        previous_node = current
+        current = next_node
+      end
+
+      @head = previous_node
     end
 
     # method that returns the value of the last node in the linked list
