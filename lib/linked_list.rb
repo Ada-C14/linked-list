@@ -18,24 +18,60 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def add_first(value)
-      raise NotImplementedError
+      # raise NotImplementedError
+      
+        new_node = Node.new(value)
+        new_node.next = @head
+        @head = new_node
+  
+
     end
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def search(value)
-      raise NotImplementedError
+      # raise NotImplementedError
+      current_node = @head
+    
+      while current_node
+          if current_node.data == value
+            return true 
+          else 
+            current_node = current_node.next
+          end
+      end
+
+      return false
+
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      raise NotImplementedError
+      # raise NotImplementedError
+      if @head == nil
+        return nil
+      end
+      
+      max_value = @head.data
+      current_node = @head
+
+      while current_node
+        if current_node.data > max_value
+          max_value = current_node.data
+          current_node = current_node.next
+        else 
+          current_node = current_node.next
+        end
+      end
+
+
+      return max_value
     end
 
     # method to return the min value in the linked list
@@ -43,7 +79,26 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_min
-      raise NotImplementedError
+      # raise NotImplementedError
+
+      if @head == nil
+        return nil
+      end
+      
+      min_value = @head.data
+      current_node = @head
+
+      while current_node
+        if current_node.data < min_value
+          min_value = current_node.data
+          current_node = current_node.next
+        else 
+          current_node = current_node.next
+        end
+      end
+
+
+      return min_value
     end
 
 
