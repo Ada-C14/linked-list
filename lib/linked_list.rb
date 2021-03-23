@@ -232,10 +232,30 @@ class LinkedList
     # checks if the linked list has a cycle. A cycle exists if any node in the
     # linked list links to a node already visited.
     # returns true if a cycle is found, false otherwise.
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n) - This would linearly scale with size of the list. 
+    # Space Complexity: O(1) - no added space complexity 
     def has_cycle
-      raise NotImplementedError
+      # use floyd's cycle finding algorithm: https://stackoverflow.com/questions/2663115/how-to-detect-a-loop-in-a-linked-listf
+      # Fast and Slow pointer
+      # option 2: could also use a hash to keep track of visited values. 
+      return false if @head.nil?
+      fast = @head
+      slow = @head
+
+      while true
+        slow = slow.next
+
+        if fast.next != nil
+          fast = fast.next.next 
+        else
+          return false
+        end
+
+        return false if fast == nil || slow == nil
+
+        return true if fast == slow
+
+      end
     end
 
     # method to insert a new node with specific data value, assuming the linked
@@ -243,7 +263,36 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def insert_ascending(value)
-      raise NotImplementedError
+      # if value is less or equal put in front, if value is greater than move to the next node. 
+      # have to keep track of current node and next node
+
+      # empty list
+      if @head.nil?
+        @head = Node.new(value)
+        return
+      end
+
+      # node is smaller than the first
+      if value < @head.data 
+        @head = Node.new(value, @head)
+        return
+      end
+      previous = @head
+      current = previous.next
+
+      # node in the middle
+      until current.nil?
+        if value <= current.data 
+          previous.next = Node.new(value, current)
+          return
+        else
+          previous = previous.next
+          current = current.next
+        end
+      end    
+
+      # node is larger than the last
+      previous.next = Node.new(value)
     end
 
     # Helper method for tests
