@@ -151,14 +151,12 @@ class LinkedList
     node_num = 0
     current_node = @head
 
-    until node_num == index
-      return nil if current_node.nil?
-
+    until node_num == index || current_node.nil?
       current_node = current_node.next
-      node_num += 1
+      node_num += 1 unless current_node.nil?
     end
 
-    return current_node.data
+    return node_num == index ? current_node.data : nil
   end
 
   # method to print all the values in the linked list
@@ -185,30 +183,65 @@ class LinkedList
   def delete(value)
     return nil if @head.nil?
 
-    current_node = @head
-    until current_node.next.data == value
-      return nil if current_node.nil?
+    if @head.data == value
+      new_head = @head.next
+      @head.next = nil
+      @head = new_head
+    end
 
+    current_node = @head
+    until current_node.next.nil?
+      if current_node.next.data == value
+        current_node.next = current_node.next.next
+        return
+      end
       current_node = current_node.next
     end
 
-    current_node.next = current_node.next.next
+    return nil
   end
 
   # method to reverse the singly linked list
   # note: the nodes should be moved and not just the values in the nodes
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> traverse length of LL to reverse all nodes
+  # Space Complexity: O(1)
+  # >> store previous, current, and next nodes
   def reverse
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    previous_node = @head
+    current_node = @head.next
+    next_node = current_node.next
+    @head.next = nil
+
+    until next_node.nil?
+      current_node.next = previous_node
+      previous_node = current_node
+      current_node = next_node
+      next_node = current_node.next
+    end
+
+    current_node.next = previous_node
+    @head = current_node
   end
 
   # method that returns the value of the last node in the linked list
   # returns nil if the linked list is empty
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> traverse length of LL to get to last node
+  # Space Complexity: O(1)
+  # >> store current node
   def get_last
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current_node = @head
+
+    until current_node.next.nil?
+      current_node = current_node.next
+    end
+
+    return current_node.data
   end
   
   ## Advanced Exercises
