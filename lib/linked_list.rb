@@ -51,20 +51,18 @@ class LinkedList
     def find_max
       return nil if @head.nil?
 
-      node = @head
-      max_value = -999
-      current_index = 0
+      max = @head.data
+      current = @head
 
-      while !node.nil?
-        if node.data > max_value
-          max_value = node.data
+      while !current.nil?
+        if current.data > max
+          max = current.data
         end
 
-        node = node.next
-        current_index += 1
+        current = current.next
       end
 
-      return max_value
+      return max
     end
 
     # method to return the min value in the linked list
@@ -74,20 +72,18 @@ class LinkedList
     def find_min
       return nil if @head.nil?
 
-      node = @head
-      min_value = 999
-      current_index = 0
+      min = @head.data
+      current = @head
 
-      while !node.nil?
-        if node.data < min_value
-          min_value = node.data
+      while !current.nil?
+        if current.data < min
+          min = current.data
         end
 
-        node = node.next
-        current_index += 1
+        current = current.next
       end
 
-      return min_value
+      return min
     end
 
 
