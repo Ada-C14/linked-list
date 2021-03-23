@@ -23,10 +23,7 @@ class LinkedList
   # Space Complexity: O(1)
   # >> Always adding 1 new node
   def add_first(value)
-    new_node = Node.new(value)
-
-    new_node.next = @head
-    @head = new_node
+  @head = Node.new(value, @head)
   end
 
   # method to find if the linked list contains a node with specified value
