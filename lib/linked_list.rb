@@ -159,7 +159,7 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(n)
     def get_at_index(index)
-      # raise NotImplementedError
+      raise NotImplementedError
     end
 
     # method to print all the values in the linked list
