@@ -210,20 +210,18 @@ class LinkedList
   def reverse
     return nil if @head.nil?
 
-    previous_node = @head
-    current_node = @head.next
-    next_node = current_node.next
-    @head.next = nil
+    current_node = @head
+    previous_node = nil
+    next_node = nil
 
-    until next_node.nil?
+    while current_node
+      next_node = current_node.next
       current_node.next = previous_node
       previous_node = current_node
       current_node = next_node
-      next_node = current_node.next
     end
 
-    current_node.next = previous_node
-    @head = current_node
+    @head = previous_node
   end
 
   # method that returns the value of the last node in the linked list
@@ -312,7 +310,7 @@ class LinkedList
   # Creates a cycle in the linked list for testing purposes
   # Assumes the linked list has at least one node
   def create_cycle
-    return if @head == nil # don't do anything if the linked list is empty
+    return if @head.nil? # don't do anything if the linked list is empty
 
     # navigate to last node
     current = @head
