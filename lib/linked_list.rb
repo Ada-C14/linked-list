@@ -246,18 +246,49 @@ class LinkedList
   
   ## Advanced Exercises
   # returns the value at the middle element in the singly linked list
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> get length of LL (pass through all n nodes)
+  # >> go through half of those nodes
+  # Space Complexity: O(1)
+  # >> store mid_index, current_node, current_node_num
   def find_middle_value
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    mid_index = length / 2
+    current_node = @head
+    current_node_num = 0
+    
+    until current_node_num == mid_index
+      current_node = current_node.next
+      current_node_num += 1
+    end
+    
+    return current_node.data
   end
 
   # find the nth node from the end and return its value
   # assume indexing starts at 0 while counting to n
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> pass through all nodes to get length
+  # >> at worst pass through all nodes again to get 0th node from end
+  # >> 2n --> n
+  # Space Complexity: O(1)
+  # >> store len, index, current_node, curr_node_num
   def find_nth_from_end(n)
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    len = length
+    return nil if n >= len # maybe better to throw ArgumentError here
+
+    index = len - n - 1
+    current_node = @head
+    curr_node_num = 0
+    until curr_node_num == index
+      current_node = current_node.next
+      curr_node_num += 1
+    end
+
+    return current_node.data
   end
 
   # checks if the linked list has a cycle. A cycle exists if any node in the
