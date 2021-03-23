@@ -171,22 +171,19 @@ class LinkedList
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
     # Time Complexity: O(n)
-    # Space Complexity: O(n)
-    # TODO O(1) solution
+    # Space Complexity: O(1)
     def reverse
-      nodes = []
-      current = @head
+      first = nil
+      second = @head
 
-      while current
-        nodes.append(current)
-        current = current.next
+      while second
+        third = second&.next
+        second.next = first
+        first = second
+        second = third
       end
 
-      nodes.reverse
-
-      
-
-
+      @head = first
 
     end
 
