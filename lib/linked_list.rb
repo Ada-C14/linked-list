@@ -292,18 +292,60 @@ class LinkedList
   # checks if the linked list has a cycle. A cycle exists if any node in the
   # linked list links to a node already visited.
   # returns true if a cycle is found, false otherwise.
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> If no cycle, 'fast' and 'slow' pointers will go through LL once
+  # >> If cycle, 'slow' pointer will go through the list at most once
+  # >> b/c 'fast' cannot lap / overtake the 'slow' pointer if 'fast'
+  # >> moves two nodes at a time while 'slow' 1 node at a time
+  # >> if DID skip over --> slow --> fast
+  # >> previous step would mean both pointers were at the same node
+  # Space Complexity: O(1)
+  # >> fast and slow nodes
   def has_cycle
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    fast = slow = @head
+    while fast&.next
+      fast = fast.next.next
+      slow = slow.next
+
+      return true if slow == fast
+    end
+
+    return false
   end
 
   # method to insert a new node with specific data value, assuming the linked
   # list is sorted in ascending order
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  # >> worst case node has to be placed at end
+  # Space Complexity: O(1)
+  # >> store new_node and current_node
   def insert_ascending(value)
-    raise NotImplementedError
+    new_node = Node.new(value)
+
+    return @head = new_node if @head.nil?
+
+    current_node = @head
+
+    if current_node.data > value
+      new_node.next = current_node
+      @head = new_node
+      return
+    end
+
+    while current_node.data <= value && current_node.next
+      if current_node.next.data > value
+        new_next_node = current_node.next
+        current_node.next = new_node
+        new_node.next = new_next_node
+        return
+      end
+
+      current_node = current_node.next
+    end
+
+    current_node.next = new_node
   end
 
   # Helper method for tests
