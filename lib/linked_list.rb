@@ -18,8 +18,8 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: 0(1)
+    # Space Complexity: 0(1)
     def add_first(value)
       # raise NotImplementedError
       @head = Node.new(value, @head)
@@ -44,6 +44,8 @@ class LinkedList
 
     # method to return the max value in the linked list
     # returns the data value and not the node
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def find_max
       # raise NotImplementedError
       return nil if @head.nil?
@@ -63,8 +65,8 @@ class LinkedList
 
     # method to return the min value in the linked list
     # returns the data value and not the node
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_min
       # raise NotImplementedError
       return nil if @head.nil?
@@ -84,8 +86,8 @@ class LinkedList
     # Additional Exercises 
     # returns the value in the first node
     # returns nil if the list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: 0(n)
+    # Space Complexity: 0(1)
     def get_first
       # raise NotImplementedError
       return @head.nil? ? nil : @head.data
