@@ -147,14 +147,18 @@ class LinkedList
     def delete(value)
       return if @head.nil?
 
+      if value == @head.data
+        @head = @head.next
+        return
+      end
+
       current = @head
       until current.next.nil?
         if current.next.data == value
           current.next = current.next.next
           return
         end
-
-        current = current.next
+          current = current.next
       end
     end
 
