@@ -65,7 +65,19 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_min
-      raise NotImplementedError
+      #raise NotImplementedError
+      if @head == nil 
+        return nil
+      end
+      min_val = @head.data
+      current = @head 
+      until current == nil 
+        if current.data < min_val 
+          min_val = current.data
+        end 
+        current = current.next
+      end 
+      return min_val 
     end
 
 
@@ -75,7 +87,8 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_first
-      raise NotImplementedError
+      #raise NotImplementedError
+      return @head.nil? ? nil : @head.data #if this is true do this else do the latter 
     end
 
     # method that inserts a given value as a new last node in the linked list
