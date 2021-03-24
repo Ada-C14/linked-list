@@ -95,14 +95,31 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def add_last(value)
-      raise NotImplementedError
+      #raise NotImplementedError
+      if @head == nil 
+        @head = Node.new(value)
+      else
+      current = @head 
+        until current.next == nil 
+          current = current.next 
+        end
+      current.next = Node.new(value) # not current because it is outside of the scope of until 
+      end
     end
 
     # method that returns the length of the singly linked list
     # Time Complexity: ?
     # Space Complexity: ?
     def length
-      raise NotImplementedError
+      #raise NotImplementedError
+      count = 0 
+      current = @head 
+      
+      until current  == nil 
+        current = current.next 
+        count += 1 
+      end 
+      return count 
     end
 
     # method that returns the value at a given index in the linked list
@@ -111,7 +128,18 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_at_index(index)
-      raise NotImplementedError
+      #raise NotImplementedError
+      count = 0 
+  
+      current = @head
+      until current == nil 
+        if count == index 
+          return current.data
+        else
+          count+= 1
+          current = current.next
+        end
+      end
     end
 
     # method to print all the values in the linked list
@@ -125,7 +153,20 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def delete(value)
-      raise NotImplementedError
+      #raise NotImplementedError
+      if @head == nil 
+        return nil
+      end
+      if @head.data == value
+        @head = @head.next
+      end
+      current = @head 
+      until current.next == nil
+        if current.next.data == value
+          current.next = current.next.next
+        end
+        current = current.next
+      end 
     end
 
     # method to reverse the singly linked list
@@ -141,7 +182,14 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_last
-      raise NotImplementedError
+      #raise NotImplementedError
+      return nil if @head.nil?
+      
+      current = @head 
+      until current.next.nil?
+          current = current.next 
+      end
+      return current.data
     end
   
     ## Advanced Exercises
