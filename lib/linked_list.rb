@@ -136,8 +136,8 @@ class LinkedList
   end
 
   # method to print all the values in the linked list
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  #   # Space Complexity: O(1)
   def visit
     return @head if @head.nil?
 
