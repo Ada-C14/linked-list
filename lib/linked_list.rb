@@ -145,7 +145,7 @@ class LinkedList
 
     # method to print all the values in the linked list
     # Time Complexity: O(n)
-    # Space Complexity: O(n)
+    # Space Complexity: O(1)
     def visit
       if @head.nil?
         puts "linked list is empty"
