@@ -59,10 +59,10 @@ describe LinkedList do
         end
 
         it "returns false if the element is not in the list" do
-          @list = LinkedList.new
-          @list.add_first(3)
-          @list.add_first(2)
-          expect(@list.search("pasta")).must_equal false
+            @list = LinkedList.new
+            @list.add_first(3)
+            @list.add_first(2)
+            expect(@list.search("pasta")).must_equal false
         end
 
         it "returns false for an empty list" do
@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -209,7 +209,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -240,6 +240,115 @@ describe LinkedList do
             expect(@list.get_at_index(1)).must_equal 3
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
+        end
+    end
+
+    describe "visit" do
+        it 'returns an array of all values in a list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+
+            expect(@list.visit).must_equal [4, 3, 2, 1]
+        end
+
+        it 'returns an empty array for an empty list' do
+            expect(@list.visit).must_equal []
+        end
+    end
+
+    describe "find_middle_value" do
+        it "finds the middle value of a list with odd length" do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+            @list.add_first(5)
+
+            expect(@list.find_middle_value).must_equal 3
+        end
+
+        it "finds the middle value of a list with even length" do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+            @list.add_first(5)
+            @list.add_first(6)
+
+            expect(@list.find_middle_value).must_equal 3
+        end
+    end
+
+    describe "has_cycle" do
+        it "will return true when a cycle is present" do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.create_cycle
+
+            expect(@list.has_cycle).must_equal true
+        end
+
+        it "will return false when no cycle is present" do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+
+            expect(@list.has_cycle).must_equal false
+        end
+
+        it "returns true when the cycle contains only one node" do
+            @list.add_first(1)
+            @list.create_cycle
+
+            expect(@list.has_cycle).must_equal true
+        end
+
+        it "returns false if the list is empty" do
+            expect(@list.has_cycle).must_equal false
+        end
+    end
+
+    describe "insert_ascending" do
+        it "inserts and element in the middle of the list" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            @list.insert_ascending(3)
+
+            expect(@list.get_at_index(2)).must_equal 3
+        end
+
+        it "inserts an element at the beginning of the list" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+
+            @list.insert_ascending(1)
+
+            expect(@list.get_at_index(0)).must_equal 1
+        end
+
+        it "inserts an element at the end of the list" do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            @list.insert_ascending(6)
+
+            expect(@list.get_at_index(4)).must_equal 6
+        end
+
+        it "inserts an element in an empty list" do
+            @list.insert_ascending(7)
+
+            expect(@list.get_at_index(0)).must_equal 7
         end
     end
 end
