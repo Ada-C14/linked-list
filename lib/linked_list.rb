@@ -83,7 +83,7 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def add_last(value)
-      @head.data = value if @head.nil?
+      return @head = Node.new(value) if @head.nil?
       current = @head
       while current.next != nil
         current = current.next
