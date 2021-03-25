@@ -261,7 +261,7 @@ class LinkedList
       return false unless @head
       return false unless @head.next
 
-      # hash way - space: o(1)
+      # hash way - space: o(n)
       # hash_table = {}
       # current = @head
       # while current
