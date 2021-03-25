@@ -43,9 +43,9 @@ class LinkedList
     # returns the data value and not the node
     def find_max
       return nil if @head.nil?
-      maximum = 0
+      maximum = @head.data
       current = @head
-      while current.next != nil
+      while ! current.nil?
         if current.data > maximum
           maximum = current.data
         end
@@ -60,7 +60,7 @@ class LinkedList
     # Space Complexity: O(1)
     def find_min
       return nil if @head.nil?
-      minimum = 0
+      minimum = @head.data
       current = @head
       while current.next != nil
         if current.data < minimum
@@ -203,7 +203,7 @@ class LinkedList
 
     # find the nth node from the end and return its value
     # assume indexing starts at 0 while counting to n
-    # Time Complexity: O(mn)
+    # Time Complexity: O(n)
     # Space Complexity: O(1)
     def find_nth_from_end(n)
       index = self.length - n
@@ -213,8 +213,8 @@ class LinkedList
     # checks if the linked list has a cycle. A cycle exists if any node in the
     # linked list links to a node already visited.
     # returns true if a cycle is found, false otherwise.
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(n)
     def has_cycle
       return false if @head.nil? || @head.next.nil?
 
