@@ -162,9 +162,9 @@ class LinkedList
       return if @head.next.nil?
 
       slow = @head
-      slow.next = nil
       fast = @head.next
       temp = fast.next
+      slow.next = nil
 
       while fast.next != nil
         fast.next = slow
