@@ -44,7 +44,7 @@ class LinkedList
     def find_max
       max = -1 / 0.0
       current = @head
-      while !current.nil? || current.next != nil
+      while !current.nil?
         max = current.data if current.data > max
         current = current.next
       end
@@ -116,7 +116,7 @@ class LinkedList
 
       current = @head
       while current_index != index
-        return nil if current.nil? || current.next.nil?
+        return nil if current.nil?
         current = current.next
         current_index += 1
       end
@@ -129,7 +129,7 @@ class LinkedList
     def visit
       return nil if @head.nil?
       current = @head
-      while current != nil || current.next != nil 
+      while current != nil
         print current.data
         current = current.next
       end
