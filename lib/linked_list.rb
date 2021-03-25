@@ -44,7 +44,16 @@ class LinkedList
   # method to return the max value in the linked list
   # returns the data value and not the node
   def find_max
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current = @head
+    max = current.data
+
+    until current.nil?
+      max = current.data if current.data > max
+      current = current.next
+    end
+    return max
   end
 
   # method to return the min value in the linked list
@@ -52,7 +61,16 @@ class LinkedList
   # Time Complexity: O(n)
   # Space Complexity: O(1)
   def find_min
-    raise NotImplementedError
+    return nil if @head.nil?
+
+    current = @head
+    min = current.data
+
+    until current.nil?
+      min = current.data if current.data < min
+      current = current.next
+    end
+    return min
   end
 
 
@@ -73,7 +91,7 @@ class LinkedList
       @head = Node.new(value)
     else
       last = Node.new(value)
-      current =@head
+      current = @head
 
       while current.next
         current = current.next
@@ -121,14 +139,34 @@ class LinkedList
   # Time Complexity: ?
   # Space Complexity: ?
   def visit
-    raise NotImplementedError
+    return @head if @head.nil?
+
+    current = @head
+
+    until current.nil?
+      p current.data
+      current = current.next
+    end
   end
 
   # method to delete the first node found with specified value
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(n)
+  #   # Space Complexity: O(1)
   def delete(value)
-    raise NotImplementedError
+    return if @head.nil?
+
+    if @head.data == value
+      @head = @head.next
+    else
+      current = @head
+      until current.next == nil
+        if current.next.data == value
+          temp = current.next
+          current.next = temp.next
+        end
+        current = current.next
+      end
+    end
   end
 
   # method to reverse the singly linked list
@@ -140,7 +178,6 @@ class LinkedList
 
     current = @head
     previous = nil
-    next_node = nil
 
     while current
       next_node = current.next
@@ -189,6 +226,7 @@ class LinkedList
   # Space Complexity: ?
   def has_cycle
     raise NotImplementedError
+
   end
 
   # method to insert a new node with specific data value, assuming the linked
