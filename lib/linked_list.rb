@@ -30,7 +30,9 @@ class LinkedList
     # Space Complexity: O(1)
     def search(value)
       current = @head
-      while !current.nil? || !current.next.nil?
+      return false if @head.nil?
+      while !current.nil?
+
         return true if current.data == value
         current = current.next
       end
@@ -54,9 +56,12 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def find_min
+      return nil if @head.nil?
       min = 1 / 0.0
+
       current = @head
-      while !current.nil? || current.next != nil
+      while !current.nil?
+
         min = current.data if current.data < min
         current = current.next
       end
@@ -106,7 +111,9 @@ class LinkedList
     # Time Complexity: O(n)
     # Space Complexity: O(1)
     def get_at_index(index)
+      return nil if @head.nil?
       current_index = 0
+
       current = @head
       while current_index != index
         return nil if current.nil? || current.next.nil?
