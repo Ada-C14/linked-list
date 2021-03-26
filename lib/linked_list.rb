@@ -226,10 +226,24 @@ class LinkedList
     # Space Complexity: ?
     def reverse
       # raise NotImplementedError
+      # current, previous, next
+      # start at head then switch pointer as you go along.
+      # have pervious saved <-- how?
+      # take whats at current
+      # store whats at current.next
+      previous = nil
       current = @head
+      temp = current.next
+      # All variables are pointers
       until current.next == nil
-        current = current.next
+        current.next = previous
+        previous = current
+        current = temp
+        temp = current.next # pointer
       end
+      current.next = previous
+      @head = current # dont forget to reassign head!
+      return
     end
 
     # method that returns the value of the last node in the linked list
