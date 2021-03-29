@@ -103,7 +103,7 @@ describe LinkedList do
     end
   end
 
-  xdescribe "Optional addLast & getLast" do
+    xdescribe "Optional addLast & getLast" do
     it "will add to the front if the list is empty" do
       @list.add_last(1)
       expect(@list.get_at_index(0)).must_equal 1
@@ -152,7 +152,7 @@ describe LinkedList do
     end
   end
 
-  describe "delete" do
+    xdescribe "delete" do
     it "delete from empty linked list is a no-op" do
       expect(@list.length).must_equal 0
       @list.delete(4)
@@ -228,7 +228,7 @@ describe LinkedList do
     end
   end
 
-  describe "reverse" do
+    xdescribe "reverse" do
     it 'can retrieve an item at index n from the end in the list' do
       @list.add_first(4)
       @list.add_first(3)
