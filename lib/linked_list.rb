@@ -112,8 +112,8 @@ class LinkedList
     end
 
     # method that returns the length of the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def length
       # raise NotImplementedError
       count = 0
@@ -145,8 +145,8 @@ class LinkedList
     end
 
     # method to print all the values in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def visit
       # raise NotImplementedError
       current = @head
@@ -157,8 +157,8 @@ class LinkedList
     end
 
     # method to delete the first node found with specified value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def delete(value)
       # raise NotImplementedError
       if @head == nil
@@ -180,16 +180,30 @@ class LinkedList
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def reverse
-      raise NotImplementedError
+      # raise NotImplementedError
+
+      current =@head
+      previous =nil
+      
+      until current.nil?
+        temp = current.next
+        current.next = previous
+        previous = current
+        current = temp
+      end 
+
+      @head = previous
+
+      
     end
 
     # method that returns the value of the last node in the linked list
     # returns nil if the linked list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: o(n)
+    # Space Complexity: o(1)
     def get_last
       #raise NotImplementedError
       return nil if @head.nil?
