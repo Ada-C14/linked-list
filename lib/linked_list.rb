@@ -87,12 +87,15 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def add_last(value)
-      return nil if @head.nil?
-      current = @head
-      until current.next.nil?
-        current = current.next
+      if @head.nil? 
+        @head = Node.new(value, next_node = nil)
+      else
+        current = @head
+        until current.next.nil?
+          current = current.next
+        end
+        current.next = Node.new(value, next_node = nil)
       end
-      current.next = Node.new(value, next_node = nil)
     end
 
     # method that returns the length of the singly linked list
@@ -139,17 +142,18 @@ class LinkedList
     # Space Complexity: ?
     def delete(value)
       return nil if @head.nil?
-      return nil if @head.next.nil? && @head.data == value
       if @head.data == value
         @head = @head.next 
-      else
-        node = @head
-        while node.next
-          if node.next.data == value
-            node.next = node.next.next
-          else
-            node = node.next
-          end
+      end
+      previous = @head
+      current = @head
+      while current
+        if current.data == value
+          previous.next = current.next
+          return
+        else
+          previous = current
+          current = current.next
         end
       end
     end
@@ -158,8 +162,9 @@ class LinkedList
     # note: the nodes should be moved and not just the values in the nodes
     # Time Complexity: ?
     # Space Complexity: ?
+
+
     def reverse
-      raise NotImplementedError
     end
 
     # method that returns the value of the last node in the linked list
