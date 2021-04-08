@@ -7,4 +7,7 @@ gem 'minitest-spec'
 gem 'minitest-reporters'
 gem "pry"
 gem 'minitest-skip'
+gem 'minitest', group: :test
+gem 'minitest-reporters', group: :test
+
 
