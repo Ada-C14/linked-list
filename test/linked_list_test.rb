@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -209,7 +209,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -241,5 +241,59 @@ describe LinkedList do
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
         end
+    end
+
+    describe "find middle value" do
+        it 'can retrieve the middle value from the list' do
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            expect(@list.find_middle_value).must_equal 3
+            @list.delete(1)
+            expect(@list.find_middle_value).must_equal 4
+        end
+    end
+    describe "has_cycle?" do
+      it 'returns true if the linked list has a cycle, false otherwise' do
+          @list.add_first(5)
+          @list.add_first(4)
+          @list.add_first(3)
+          @list.add_first(2)
+          @list.add_first(1)
+
+          expect(@list.has_cycle?).must_equal false
+
+          @list.create_cycle
+
+          expect(@list.has_cycle?).must_equal true
+      end
+    end
+
+    describe 'insert_ascending' do
+      it 'inserts an a node in the correct order in a sorted-ascending list' do
+        @list.add_first(22)
+        @list.add_first(17)
+        @list.add_first(10)
+        @list.add_first(2)
+        @list.insert_ascending(15)
+        @list.insert_ascending(1)
+        @list.insert_ascending(50)
+
+        expect(@list.length).must_equal(7)
+        expect(@list.get_at_index(3)).must_equal 15
+        expect(@list.get_first).must_equal 1
+        expect(@list.get_last).must_equal 50
+      end
+
+      it 'can insert into an empty list' do
+        @list.insert_ascending(15)
+
+        expect(@list.get_first).must_equal 15
+      end
+
+
     end
 end
