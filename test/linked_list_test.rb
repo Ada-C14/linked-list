@@ -32,18 +32,18 @@ describe LinkedList do
             @list.add_first(2)
 
             # Assert
-            expect(@list.get_at_index(0)).must_equal 2
+            expect(@list.get_first).must_equal 2
 
             # Act again
             @list.add_first(3)
 
             # Assert
-            expect(@list.get_at_index(0)).must_equal 3
+            expect(@list.get_first).must_equal 3
         end
 
         it 'will return `nil` for `getFirst` if the list is empty' do
 
-            expect(@list.get_at_index(0)).must_be_nil
+            expect(@list.get_first).must_be_nil
         end
     end
 
@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
