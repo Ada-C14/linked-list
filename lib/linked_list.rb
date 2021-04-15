@@ -42,6 +42,7 @@ class LinkedList
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
+      return nil if @head.nil?
       max = -1 / 0.0
       current = @head
       while !current.nil?
@@ -143,11 +144,13 @@ class LinkedList
       current = @head
       if @head.data == value
         @head = @head.next
+        return value
       end
 
       while current.next != nil
         if current.next.data == value
           current.next = current.next.next
+          return value
         end
         current = current.next
       end
