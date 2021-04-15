@@ -18,32 +18,69 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def add_first(value)
-      raise NotImplementedError
+      new_node = Node.new(value)
+      new_node.next = @head
+      @head = new_node
     end
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def search(value)
-      raise NotImplementedError
+      return false if @head.nil?
+
+      current = @head
+
+      until current.nil?
+        return true if current.data == value
+        current = current.next
+      end
+
+      return false
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      max = @head.data
+      current = @head
+
+      until current.nil?
+        if current.data > max
+          max = current.data
+        end
+
+        current = current.next
+      end
+
+      return max
     end
 
     # method to return the min value in the linked list
     # returns the data value and not the node
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def find_min
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      min = @head.data
+      current = @head
+
+      until current.nil?
+        if current.data < min
+          min = current.data
+        end
+        
+        current = current.next
+      end
+
+      return min
     end
 
 
@@ -76,7 +113,21 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_at_index(index)
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      if index == 0
+        return @head
+      else
+        current = @head
+        current_index = 0
+
+        while current.next != nil && current_index < index - 1
+          current = current.next
+          current_index += 1
+        end
+
+        return current.data
+      end
     end
 
     # method to print all the values in the linked list
