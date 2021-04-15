@@ -186,7 +186,7 @@ class LinkedList
     # Space Complexity: O(1)
     def get_last
       return nil if @head == nil
-      return nil if has_cycle()
+      #return nil if has_cycle()
       current = @head
       while current.next != nil
         current = current.next
