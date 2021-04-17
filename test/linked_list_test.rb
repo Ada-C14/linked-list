@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -209,7 +209,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -228,18 +228,151 @@ describe LinkedList do
         end
     end
 
+    describe "Optional:  find_middle_value" do
+        it 'returns nil if list is empty' do
+            expect(@list.find_middle_value).must_be_nil
+        end
+
+        it 'can return second of the middle values of an even length list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+
+            expect(@list.find_middle_value).must_equal 2
+        end
+
+        it 'can return the middle values of an odd length list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            @list.add_first(3)
+            @list.add_first(4)
+            @list.add_first(5)
+
+            expect(@list.find_middle_value).must_equal 3
+        end
+
+        it 'can return the middle values of 1 element list' do
+            @list.add_first(1)
+
+            expect(@list.find_middle_value).must_equal 1
+        end
+
+        it 'can return the second element of a 2 element list' do
+            @list.add_first(1)
+            @list.add_first(2)
+            
+            expect(@list.find_middle_value).must_equal 1
+        end
+    end
+
     describe "reverse" do
         it 'can retrieve an item at index n from the end in the list' do
+
+            
             @list.add_first(4)
             @list.add_first(3)
             @list.add_first(2)
             @list.add_first(1)
+
             @list.reverse
 
             expect(@list.get_at_index(0)).must_equal 4
             expect(@list.get_at_index(1)).must_equal 3
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
+        end
+    end
+
+    describe "has_cycle" do
+        it 'returns true if there is a cycle' do
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            @list.create_cycle
+
+            expect(@list.has_cycle).must_equal true
+        end
+
+        it 'returns false for empty list' do
+            expect(@list.has_cycle).must_equal false 
+        end
+
+        it 'returns false for list with no cycle' do
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.add_first(1)
+
+            expect(@list.has_cycle).must_equal false
+        end
+    end
+
+    describe 'insert ascending' do
+        it 'can add several nodes and expect list to be in ascending order' do
+            @list.insert_ascending(3)
+            @list.insert_ascending(4)
+            @list.insert_ascending(1)
+            @list.insert_ascending(2)
+
+            expect(@list.get_at_index(0)).must_equal 1
+            expect(@list.get_at_index(1)).must_equal 2
+            expect(@list.get_at_index(2)).must_equal 3
+            expect(@list.get_at_index(3)).must_equal 4
+        end
+
+        it 'can add node in ascending order in beginning of the list' do
+            @list.add_first(4)
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.insert_ascending(1)
+
+            expect(@list.get_at_index(0)).must_equal 1
+            expect(@list.get_at_index(1)).must_equal 2
+            expect(@list.get_at_index(2)).must_equal 3
+            expect(@list.get_at_index(3)).must_equal 4
+        end
+
+        it 'can add node in ascending order in middle of the list' do
+
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(2)
+            @list.insert_ascending(3)
+
+            expect(@list.get_at_index(0)).must_equal 2
+            expect(@list.get_at_index(1)).must_equal 3
+            expect(@list.get_at_index(2)).must_equal 4
+            expect(@list.get_at_index(3)).must_equal 5
+        end
+
+        it 'can add node in ascending order in end of the list' do
+
+            @list.add_first(5)
+            @list.add_first(4)
+            @list.add_first(2)
+            @list.insert_ascending(20)
+
+            expect(@list.get_at_index(0)).must_equal 2
+            expect(@list.get_at_index(1)).must_equal 4
+            expect(@list.get_at_index(2)).must_equal 5
+            expect(@list.get_at_index(3)).must_equal 20
+        end
+
+        it 'can add node in an empty list' do
+            @list.insert_ascending(2)
+            expect(@list.get_at_index(0)).must_equal 2
+        end
+
+        it 'can add node next to same value' do
+            @list.add_first(3)
+            @list.add_first(2)
+            @list.insert_ascending(2)
+            expect(@list.get_at_index(0)).must_equal 2
+            expect(@list.get_at_index(1)).must_equal 2
+
         end
     end
 end
