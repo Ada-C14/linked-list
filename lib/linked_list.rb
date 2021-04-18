@@ -51,18 +51,15 @@ class LinkedList
     # method to return the min value in the linked list
     # returns the data value and not the node
     # Time Complexity: O(n) with n being the length of the linked list.
-    # Space Complexity: O(1)
-    def find_min
+    # Space Complexity: O(n)
+    def find_min(min_value = 1.0/0, current = @head)
       return nil if @head.nil?
-      min_value = @head.data
-      current = @head
-      while current
-        if current.data < min_value
-          min_value = current.data
-        else current = current.next
-        end
+      return min_value if current.nil?
+      if current.data < min_value
+        find_min(current.data, current.next)
+      else
+        find_min(min_value, current.next)
       end
-      return min_value
     end
 
     # Additional Exercises 
