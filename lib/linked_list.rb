@@ -30,9 +30,10 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def search(value)
+      return false if @head == nil
       current = @head
-      while current.next
-        if current == value
+      while current
+        if current.data == value
           return true
         end
         current = current.next
@@ -43,15 +44,17 @@ class LinkedList
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      max = @head
+      return nil if @head == nil
       current = @head
-      while current.next
-        if current > max
-          max = current
+      max = current.data
+      current = current.next
+      while current 
+        if current.data > max
+          max = current.data
         end
         current = current.next
       end
-      return max.data
+      return max
     end
 
     # method to return the min value in the linked list
@@ -59,15 +62,17 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_min
-      min = @head
+      return nil if @head == nil
       current = @head
-      while current.next
-        if current < min
-          min = current
+      min = current.data
+      current = current.next
+      while current
+        if current.data < min
+          min = current.data
         end
         current = current.next
       end
-      return min.data
+      return min
     end
 
 
@@ -88,8 +93,12 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def add_last(value)
-      current = @head
       new_node = Node.new(value)
+      if @head == nil
+        @head = new_node
+        return
+      end
+      current = @head
       while current.next
         current = current.next
       end
@@ -100,6 +109,7 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def length
+      return 0 if @head == nil
       current = @head
       count = 0
       until current.nil?
@@ -142,7 +152,21 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def delete(value)
-      raise NotImplementedError
+      return nil if @head == nil
+
+      if @head.data == value
+        @head = @head.next
+        return
+      end
+
+      current = @head
+      while current.next
+        if current.next.data == value
+          current.next = current.next.next
+          return
+        end
+        current = current.next
+      end
     end
 
     # method to reverse the singly linked list
@@ -150,7 +174,16 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def reverse
-      raise NotImplementedError
+      return nil if @head == nil
+      current = @head
+      prev = nil
+      while current
+        temp = current.next
+        current.next = prev
+        prev = current
+        current = temp
+      end
+      @head = prev
     end
 
     # method that returns the value of the last node in the linked list
@@ -158,7 +191,13 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_last
-      raise NotImplementedError
+      return nil if @head == nil
+      
+      current = @head
+      while current.next != nil
+        current = current.next
+      end
+      return current.data
     end
   
     ## Advanced Exercises
@@ -166,7 +205,18 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_middle_value
-      raise NotImplementedError
+      return nil if @head == nil
+
+      slow = @head
+      fast = @head.next
+      while fast != nil
+        slow = slow.next
+        fast = fast.next
+        if fast != nil
+          fast = fast.next
+        end
+      end
+      return slow.data
     end
 
     # find the nth node from the end and return its value
@@ -174,7 +224,19 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_nth_from_end(n)
-      raise NotImplementedError
+      return nil if @head == nil || self.length < n
+      return self.get_last if n == 0
+      n = self.length - n
+      count = 0
+      current = @head
+      until count == n - 1 
+        if current.next == nil
+          return nil
+        end
+        current = current.next
+        count += 1
+      end
+      return current.data
     end
 
     # checks if the linked list has a cycle. A cycle exists if any node in the
