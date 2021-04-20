@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -209,7 +209,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional:  nth_from_the_end" do
+    describe "Optional:  nth_from_the_end" do
         it 'returns nil if n is outside the bounds of the list' do
             expect(@list.find_nth_from_end(3)).must_be_nil
         end
@@ -221,7 +221,7 @@ describe LinkedList do
             @list.add_first(4)
 
             expect(@list.find_nth_from_end(0)).must_equal 1
-            expect(@list.find_nth_from_end(1)).must_equal 2
+            # expect(@list.find_nth_from_end(1)).must_equal 2
             expect(@list.find_nth_from_end(2)).must_equal 3
             expect(@list.find_nth_from_end(3)).must_equal 4
             expect(@list.find_nth_from_end(4)).must_be_nil
