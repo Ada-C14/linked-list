@@ -18,16 +18,16 @@ class LinkedList
 
     # method to add a new node with the specific data value in the linked list
     # insert the new node at the beginning of the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def add_first(value)
       @head = Node.new(value, @head)
     end
 
     # method to find if the linked list contains a node with specified value
     # returns true if found, false otherwise
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def search(value)
       current_node = @head
       
@@ -58,8 +58,8 @@ class LinkedList
 
     # method to return the min value in the linked list
     # returns the data value and not the node
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def find_min
       return nil if @head.nil?
 
@@ -80,17 +80,17 @@ class LinkedList
     # Additional Exercises 
     # returns the value in the first node
     # returns nil if the list is empty
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def get_first
-      return nil if @head == nil
+      return nil if @head.nil?   # I don't understand why this is not passing the test
 
       return @head.data
     end
 
     # method that inserts a given value as a new last node in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def add_last(value)
       new_node = Node.new(value)
 
@@ -107,9 +107,8 @@ class LinkedList
     end
 
     # method that returns the length of the singly linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
-    def length
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
       current_node = @head
       counter = 0
       until current_node.nil?
@@ -123,8 +122,8 @@ class LinkedList
     # method that returns the value at a given index in the linked list
     # index count starts at 0
     # returns nil if there are fewer nodes in the linked list than the index value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def get_at_index(index)
       length = self.length
 
@@ -140,8 +139,8 @@ class LinkedList
     end
 
     # method to print all the values in the linked list
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def visit
       current_node = @head
 
@@ -153,8 +152,8 @@ class LinkedList
     end
 
     # method to delete the first node found with specified value
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def delete(value)
       return nil if @head.nil?
       current_node = @head
@@ -176,8 +175,8 @@ class LinkedList
 
     # method to reverse the singly linked list
     # note: the nodes should be moved and not just the values in the nodes
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def reverse
       return nil if @head.nil?
       current_node = @head
