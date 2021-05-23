@@ -21,7 +21,7 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def add_first(value)
-      raise NotImplementedError
+      @head = Node.new(value, @head)
     end
 
     # method to find if the linked list contains a node with specified value
@@ -29,13 +29,31 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def search(value)
-      raise NotImplementedError
+      current_node = @head
+      
+      until current_node.nil?
+        return true if current_node.data == value
+        current_node = current_node.next
+      end
+      
+      return false
     end
 
     # method to return the max value in the linked list
     # returns the data value and not the node
     def find_max
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      current_node = @head
+      max = 0
+      until current_node.nil?
+        if current_node.data > max
+          max = current_node.data
+        end
+        current_node = current_node.next
+      end
+
+      return max
     end
 
     # method to return the min value in the linked list
@@ -43,7 +61,19 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def find_min
-      raise NotImplementedError
+      return nil if @head.nil?
+
+      current_node = @head
+      min = current_node.data
+
+      until current_node.nil?
+        if current_node.data < min
+          min = current_node.data
+        end
+        current_node = current_node.next          
+      end
+
+      return min
     end
 
 
@@ -53,21 +83,41 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_first
-      raise NotImplementedError
+      return nil if @head == nil
+
+      return @head.data
     end
 
     # method that inserts a given value as a new last node in the linked list
     # Time Complexity: ?
     # Space Complexity: ?
     def add_last(value)
-      raise NotImplementedError
+      new_node = Node.new(value)
+
+      current_node = @head
+      if current_node.nil?
+        return @head = new_node
+      end
+      
+      until current_node.next.nil?
+        current_node = current_node.next
+      end
+
+      current_node.next = new_node
     end
 
     # method that returns the length of the singly linked list
     # Time Complexity: ?
     # Space Complexity: ?
     def length
-      raise NotImplementedError
+      current_node = @head
+      counter = 0
+      until current_node.nil?
+        counter += 1
+        current_node = current_node.next
+      end
+
+      return counter
     end
 
     # method that returns the value at a given index in the linked list
@@ -76,7 +126,17 @@ class LinkedList
     # Time Complexity: ?
     # Space Complexity: ?
     def get_at_index(index)
-      raise NotImplementedError
+      length = self.length
+
+      return nil if index > length
+
+      current_node = @head
+
+      index.times do 
+        current_node = current_node.next
+      end
+
+      return current_node.data
     end
 
     # method to print all the values in the linked list
