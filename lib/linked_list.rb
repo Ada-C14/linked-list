@@ -109,6 +109,7 @@ class LinkedList
     # method that returns the length of the singly linked list
     # Time Complexity: O(1)
     # Space Complexity: O(1)
+    def length
       current_node = @head
       counter = 0
       until current_node.nil?
