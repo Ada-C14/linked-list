@@ -265,21 +265,21 @@ class LinkedList
 		current = @head
 		trailing_current = nil
 
-		until count == n || current.next.nil?
+		until count == n
 			current = current.next
 			count += 1
+
+      return nil if current.nil?
 		end
 
-		if count == n
-			trailing_current = @head
-		end
+		trailing_current = @head
 
 		until current.next.nil?
 			current = current.next
 			trailing_current = trailing_current.next
 		end
 
-		return trailing_current.data if trailing_current
+		return trailing_current.data
 	end
 
 	# checks if the linked list has a cycle. A cycle exists if any node in the
