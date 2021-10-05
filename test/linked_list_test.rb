@@ -59,10 +59,10 @@ describe LinkedList do
         end
 
         it "returns false if the element is not in the list" do
-          @list = LinkedList.new
-          @list.add_first(3)
-          @list.add_first(2)
-          expect(@list.search("pasta")).must_equal false
+            @list = LinkedList.new
+            @list.add_first(3)
+            @list.add_first(2)
+            expect(@list.search("pasta")).must_equal false
         end
 
         it "returns false for an empty list" do
@@ -103,7 +103,7 @@ describe LinkedList do
         end
     end
 
-    xdescribe "Optional addLast & getLast" do
+    describe "Optional addLast & getLast" do
         it "will add to the front if the list is empty" do
             @list.add_last(1)
             expect(@list.get_at_index(0)).must_equal 1
@@ -240,6 +240,18 @@ describe LinkedList do
             expect(@list.get_at_index(1)).must_equal 3
             expect(@list.get_at_index(2)).must_equal 2
             expect(@list.get_at_index(3)).must_equal 1
+        end
+    end
+
+    describe "insert_ascending" do
+        it 'can insert a value while mantaining an ascending order' do
+            @test = LinkedList.new
+            @test.add_first(3)
+            @test.add_first(1)
+            @test.insert_ascending(2)
+
+            expect(@test.get_at_index(2)).must_equal 3
+            expect(@test.get_at_index(1)).must_equal 2
         end
     end
 end
