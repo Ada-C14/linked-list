@@ -279,8 +279,8 @@ class LinkedList
 
     # method to insert a new node with specific data value, assuming the linked
     # list is sorted in ascending order
-    # Time Complexity: ?
-    # Space Complexity: ?
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def insert_ascending(num)
       if !num.is_a? Integer
         raise ArgumentError, "value should be a number"
@@ -297,13 +297,10 @@ class LinkedList
       max = @head
 
       while max
-        
         if new_value.data > min.data && new_value.data < max.data
-
           min.next = new_value
           new_value.next = max
-
-          return @head
+          break
         end
 
         min = max
@@ -312,9 +309,9 @@ class LinkedList
 
       if new_value.data > max.data
         max.next = new_value
-        return @head
       end
 
+      return @head
     end
 
     # Helper method for tests
@@ -332,13 +329,3 @@ class LinkedList
       current.next = @head # make the last node link to first node
     end
 end
-
-
-puts "test ascending"
-@list = LinkedList.new
-@list.add_first(3)
-@list.add_first(1)
-
-@list.insert_ascending(2)
-
-print @list.get_at_index(2)
